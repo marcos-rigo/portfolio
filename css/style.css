@@ -36,13 +36,13 @@ h2 {
 }
 
 a {
-    color: #2196f3;
+    color: #0049AC;
 }
 
 a:hover,
 a:focus,
 a:active {
-    color: #0f72c1;
+    color: #0049AC;
 }
 
 .subheading {
@@ -52,6 +52,12 @@ a:active {
     font-size: 1.35rem;
 }
 
+@media (max-width: 576px) { 
+    .subheading{
+        width: 80vw;
+    }
+ }
+
 /*==================================================
                   SOCIAL-ICON
 ====================================================*/
@@ -60,7 +66,7 @@ a:active {
   }
 
   .list-social-icons a:hover {
-      color: #2196f3;
+      color: #0049AC;
   }
 
   .list-social-icons a .fa-lg {
@@ -200,11 +206,11 @@ a:active {
   }
 
   .bg-primary {
-      background-color: #2196f3 !important;
+      background-color: #0049AC !important;
   }
 
   .text-primary {
-      color: #2196f3 !important;
+      color: #0049AC !important;
   }
 
 /*==================================================
@@ -774,3 +780,25 @@ a:active {
     width:100%;
     position:absolute;
 }
+
+
+
+@media (max-width: 576px) { 
+    .descripcion{
+        width: 70vw;
+    }
+ }
+
+ @media (min-width: 768px) { 
+    .descripcion{
+        width: 63vw;
+    }
+  }
+
+  @media (min-width: 992px) { 
+    .descripcion{
+        width: 42vw;
+    }
+   }
+
+
