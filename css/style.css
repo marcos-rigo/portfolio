@@ -425,7 +425,8 @@ a:active {
 .skill-item {
     padding: 20px 0;
     margin-bottom: 30px;
-    background: rgba(144, 144, 144, 0.78);
+    background: #ffffffa9;
+    border-radius: 20px;
 }
 
 .skill-item i {
@@ -433,7 +434,7 @@ a:active {
 }
 
 .skill-item h2 {
-    color: #fff;
+    color: #0049AC;
     font-size: "hind", sans-serif;
     font-size: 35px;
     font-weight: 700;
@@ -442,7 +443,7 @@ a:active {
 }
 
 .skill-item p {
-    color: #fff;
+    color: #0049AC;
     font-family: "hind", sans-serif;
     /*text-transform: uppercase;*/
     font-weight: 300;
@@ -799,6 +800,19 @@ a:active {
     .descripcion{
         width: 42vw;
     }
+   }
+
+   .img-skill{
+    background-size: cover;
+    width: 100%;
+   }
+
+   #img-react{
+    margin-bottom: 5px;
+    background: #ffffffa9;
+    border-radius: 20px;
+    background-size: cover;
+    width: 100%;
    }
 
 
