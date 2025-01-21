@@ -49,12 +49,12 @@ a:active {
     text-transform: uppercase;
     font-weight: 500;
     font-family: 'Saira Extra Condensed', serif;
-    font-size: 1.35rem;
+    font-size: 1.30rem;
 }
 
 @media (max-width: 576px) { 
     .subheading{
-        width: 80vw;
+        width: 69vw;
     }
  }
 
@@ -217,7 +217,7 @@ a:active {
                       ABOUT
 ====================================================*/
   #about {
-      background-image: url(../img/profile-banner.png); 
+      background-image: url(../img/portada.webp); 
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -786,19 +786,19 @@ a:active {
 
 @media (max-width: 576px) { 
     .descripcion{
-        width: 70vw;
+        width: 68vw;
     }
  }
 
  @media (min-width: 768px) { 
     .descripcion{
-        width: 63vw;
+        width: 55vw;
     }
   }
 
   @media (min-width: 992px) { 
     .descripcion{
-        width: 42vw;
+        width: 40vw;
     }
    }
 
