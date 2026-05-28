@@ -68,13 +68,18 @@ export default function Navbar() {
     };
   }, []);
 
+  const getNavbarHeight = () => {
+    const header = document.querySelector("header");
+    return header ? header.getBoundingClientRect().height + 12 : 80;
+  };
+
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     setMobileMenuOpen(false);
-    
+
     const targetEl = document.getElementById(href.replace("#", ""));
     if (targetEl) {
-      const navbarHeight = 80;
+      const navbarHeight = getNavbarHeight();
       const targetPosition = targetEl.getBoundingClientRect().top + window.scrollY - navbarHeight;
       window.scrollTo({
         top: targetPosition,

@@ -62,11 +62,16 @@ export default function Hero() {
     },
   } as const;
 
+  const getNavbarHeight = () => {
+    const header = document.querySelector("header");
+    return header ? header.getBoundingClientRect().height + 12 : 80;
+  };
+
   const handleScrollToProjects = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     const el = document.getElementById("portfolio");
     if (el) {
-      const navbarHeight = 80;
+      const navbarHeight = getNavbarHeight();
       const targetPosition = el.getBoundingClientRect().top + window.scrollY - navbarHeight;
       window.scrollTo({ top: targetPosition, behavior: "smooth" });
     }

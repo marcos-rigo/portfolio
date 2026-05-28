@@ -201,6 +201,10 @@ body {
   overflow-x: hidden;
 }
 
+section[id] {
+  scroll-margin-top: 5rem;
+}
+
 @keyframes rotate-radar {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
