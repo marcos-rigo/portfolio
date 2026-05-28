@@ -1,0 +1,221 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --font-sans: var(--font-geist-sans), sans-serif;
+  --font-heading: var(--font-bricolage-grotesque), sans-serif;
+  --font-mono: var(--font-geist-mono), monospace;
+}
+
+:root {
+  --background: #fafbff; /* Blanco-azul tecnológico exacto */
+  --foreground: #09090e; /* Negro profundo de alto contraste exacto */
+  
+  --primary: #c4002d; /* Crimson Rubí más rojo y saturado */
+  --primary-rgb: 196, 0, 45;
+  --primary-foreground: #ffffff;
+  
+  --muted: #f1f3f9;
+  --muted-foreground: #374151; /* Gris oscuro para legibilidad óptima WCAG AAA */
+  
+  --card: #ffffff;
+  --card-foreground: #09090e;
+  
+  --border: #e2e8f0;
+  --input: #e2e8f0;
+  --ring: #c4002d;
+  
+  --accent: #6d28d9; /* Violeta Eléctrico ajustado para WCAG AAA (Contraste 7.1:1) */
+  --accent-rgb: 109, 40, 217;
+  --accent-foreground: #ffffff;
+}
+
+.dark {
+  --background: #040406; /* Fondo espacial negro azulado profundo exacto */
+  --foreground: #f4f4fa; /* Texto principal blanco brillante exacto */
+  
+  --primary: #ff003f; /* Crimson Rubí Neón más rojo */
+  --primary-rgb: 255, 0, 63;
+  --primary-foreground: #ffffff;
+  
+  --muted: #0c0d12;
+  --muted-foreground: #9ca3af;
+  
+  --card: #08090d; /* Tarjeta oscura translúcida */
+  --card-foreground: #f4f4fa;
+  
+  --border: #161720;
+  --input: #161720;
+  --ring: #ff003f;
+  
+  --accent: #8b5cf6; /* Violeta Eléctrico exacto */
+  --accent-rgb: 139, 92, 246;
+  --accent-foreground: #040406;
+}
+
+/* Selección de texto premium con glow cobre */
+::selection {
+  background-color: rgba(var(--primary-rgb), 0.25);
+  color: inherit;
+}
+
+/* Scrollbar neón estilizada */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 9999px;
+  border: 1px solid var(--background);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+  box-shadow: 0 0 10px var(--primary);
+}
+
+/* Efectos premium de Glassmorphism con bordes translúcidos de neón */
+.glass {
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+}
+
+.dark .glass {
+  background: rgba(8, 9, 13, 0.65);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Glassmorphism con bordes dobles de neón (Cobre + Violeta) */
+.glass-glow {
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.02), 
+              inset 0 0 12px rgba(var(--primary-rgb), 0.05),
+              inset 0 0 12px rgba(var(--accent-rgb), 0.05);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dark .glass-glow {
+  background: rgba(8, 9, 13, 0.65);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3),
+              inset 0 0 15px rgba(var(--primary-rgb), 0.08),
+              inset 0 0 15px rgba(var(--accent-rgb), 0.08);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-glow:hover {
+  border-color: rgba(var(--primary-rgb), 0.35);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06), 
+              0 0 20px rgba(var(--primary-rgb), 0.15),
+              0 0 35px rgba(var(--accent-rgb), 0.1);
+}
+
+.dark .glass-glow:hover {
+  border-color: rgba(var(--primary-rgb), 0.45);
+  box-shadow: 0 10px 45px rgba(0, 0, 0, 0.4),
+              0 0 25px rgba(var(--primary-rgb), 0.25),
+              0 0 40px rgba(var(--accent-rgb), 0.15);
+}
+
+/* Hover de tarjetas con brillo neón doble (Cobre + Violeta) */
+.group:hover .neon-border {
+  border-color: var(--primary);
+  box-shadow: 0 0 15px rgba(var(--primary-rgb), 0.25);
+}
+
+.dark .group:hover .neon-border-indigo {
+  border-color: var(--accent);
+  box-shadow: 0 0 15px rgba(var(--accent-rgb), 0.25);
+}
+
+/* Efecto de borde degradado resplandeciente */
+.gradient-border-card {
+  position: relative;
+  border-radius: 24px;
+}
+
+.gradient-border-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 24px;
+  padding: 1.5px; /* Ancho de borde */
+  background: linear-gradient(to right, var(--primary), var(--accent));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0.15;
+  transition: opacity 0.3s ease;
+}
+
+.group:hover.gradient-border-card::before {
+  opacity: 0.7;
+  filter: drop-shadow(0 0 8px var(--primary));
+}
+
+/* Transiciones orgánicas globales */
+* {
+  scroll-behavior: smooth;
+  transition-property: background-color, border-color, color, fill, stroke, box-shadow;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body {
+  overflow-x: hidden;
+}
+
+@keyframes rotate-radar {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.rotate-radar {
+  animation: rotate-radar 4s linear infinite;
+}
+
+@keyframes marquee {
+  from { stroke-dashoffset: 12; }
+  to { stroke-dashoffset: 0; }
+}
+
+.animate-marquee {
+  stroke-dasharray: 6, 3;
+  animation: marquee 0.8s linear infinite;
+}
