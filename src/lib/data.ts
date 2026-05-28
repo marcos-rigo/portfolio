@@ -52,7 +52,7 @@ export const personalInfo: PersonalInfo = {
   email: "marcos.rigo.10@gmail.com",
   phone: "+54 381 4163 584",
   location: "San Miguel de Tucumán, Tucumán, Argentina",
-  cvUrl: "https://drive.google.com/file/d/19Ols7p4TDdOUB0UeAKLDSGKj6rW0hyyr/view?usp=sharing",
+  cvUrl: "https://drive.google.com/file/d/1zKbxronim7KzmlQsATcI4lG-Sa8ybHsZ/view?usp=sharing",
   github: "https://github.com/marcos-rigo",
   linkedin: "https://www.linkedin.com/in/marcos-rigo/",
   profileImage: "/img/profile.png",
