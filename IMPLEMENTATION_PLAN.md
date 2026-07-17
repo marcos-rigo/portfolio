@@ -102,8 +102,7 @@ Hemos dividido este proyecto en **5 etapas progresivas** para que podamos ir con
 ### 🔴 ETAPA 5: Optimización Extrema, SEO y Despliegue de Alto Rendimiento
 **Objetivo**: Garantizar que el sitio cargue en menos de 1 segundo, tenga un SEO impecable de nivel Google y esté desplegado en la red más rápida del mundo.
 
-1. **Remoción de Legacy Code**:
-   * Limpieza absoluta de todos los archivos anteriores de Gulp, Bootstrap y estilos antiguos para reducir el bundle al mínimo.
+1. **Remoción de Legacy Code**: ✅ Completado — `gulpfile.js`, `scss/`, `css/`, `font-awesome/`, `js/` (jQuery) e `index.html` fueron eliminados del repositorio.
 2. **Optimización Extrema de Imágenes**:
    * Migrar todos los recursos de imagen a formatos modernos como WebP optimizados dinámicamente mediante el componente `next/image` de Next.js.
 3. **SEO Avanzado e Indexación Automatizada**:

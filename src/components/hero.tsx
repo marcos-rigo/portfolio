@@ -1,12 +1,15 @@
 "use client";
 
 import React from "react";
+import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import { ArrowUpRight, FileDown, Sparkles } from "lucide-react";
 import { personalInfo } from "@/lib/data";
 import { useLanguage } from "@/components/language-provider";
-import QuantumSphere from "@/components/quantum-sphere";
 import Magnetic from "@/components/magnetic";
+
+// Decorativo: se carga en el cliente sin bloquear el first paint ni el SSR del contenido.
+const QuantumSphere = dynamic(() => import("@/components/quantum-sphere"), { ssr: false });
 
 const Github = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
@@ -93,21 +96,18 @@ export default function Hero() {
           {/* Etiqueta flotante premium */}
           <motion.div
             variants={itemVariants}
-            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/25 text-primary text-xs font-semibold tracking-wide mb-6 shadow-sm"
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary text-white text-xs font-bold uppercase tracking-widest mb-6 shadow-sm"
           >
             <Sparkles className="w-3.5 h-3.5 animate-pulse" />
             <span>{t.hero.tag}</span>
           </motion.div>
 
-          {/* Nombre Gigante con tipografía Bricolage Grotesque */}
+          {/* Nombre Gigante con tipografía Poppins */}
           <motion.h1
             variants={itemVariants}
             className="font-heading font-extrabold text-5xl sm:text-7xl lg:text-8xl tracking-tight leading-none text-foreground mb-4 select-none"
           >
-            Rigo{" "}
-            <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              Marcos
-            </span>
+            Rigo <span className="text-primary">Marcos</span>
           </motion.h1>
 
           {/* Subtítulo dinámico con gradiente sutil */}
@@ -134,22 +134,22 @@ export default function Hero() {
             <Magnetic range={70} strength={0.25}>
               <button
                 onClick={handleScrollToProjects}
-                className="flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-primary text-white font-semibold text-sm shadow-lg hover:shadow-primary/25 hover:bg-primary/95 transition-all duration-300 w-full sm:w-auto cursor-pointer"
+                className="flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-primary text-white font-semibold text-sm shadow-lg hover:bg-[#B8121D] transition-all duration-300 w-full sm:w-auto cursor-pointer"
               >
                 <span>{t.hero.ctaView}</span>
                 <ArrowUpRight className="w-4 h-4" />
               </button>
             </Magnetic>
-            
+
             <Magnetic range={70} strength={0.25}>
               <a
                 href={personalInfo.cvUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 px-7 py-3.5 rounded-full glass border border-black/5 dark:border-white/5 font-semibold text-sm hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-all duration-300 w-full sm:w-auto cursor-pointer"
+                className="flex items-center justify-center gap-2 px-7 py-3.5 rounded-full border-2 border-foreground text-foreground font-semibold text-sm hover:bg-foreground hover:text-background transition-all duration-300 w-full sm:w-auto cursor-pointer"
               >
                 <span>{t.hero.ctaDownload}</span>
-                <FileDown className="w-4 h-4 text-primary" />
+                <FileDown className="w-4 h-4" />
               </a>
             </Magnetic>
           </motion.div>
@@ -164,7 +164,7 @@ export default function Hero() {
                 href={personalInfo.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3 rounded-full border border-black/5 dark:border-white/5 glass hover:bg-zinc-100 dark:hover:bg-zinc-900 text-muted-foreground hover:text-primary transition-all duration-300 cursor-pointer"
+                className="inline-flex items-center justify-center p-3 rounded-full border border-border bg-card text-muted-foreground hover:text-primary hover:border-primary/40 transition-all duration-300 cursor-pointer"
                 aria-label="Ir a GitHub de Marcos"
               >
                 <Github className="w-5 h-5" />
@@ -175,7 +175,7 @@ export default function Hero() {
                 href={personalInfo.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3 rounded-full border border-black/5 dark:border-white/5 glass hover:bg-zinc-100 dark:hover:bg-zinc-900 text-muted-foreground hover:text-primary transition-all duration-300 cursor-pointer"
+                className="inline-flex items-center justify-center p-3 rounded-full border border-border bg-card text-muted-foreground hover:text-primary hover:border-primary/40 transition-all duration-300 cursor-pointer"
                 aria-label="Ir a LinkedIn de Marcos"
               >
                 <Linkedin className="w-5 h-5" />
@@ -190,7 +190,7 @@ export default function Hero() {
           className="lg:col-span-5 w-full h-[320px] sm:h-[400px] lg:h-[450px] flex items-center justify-center relative select-none"
         >
           {/* Orbe de resplandor ambiental localizado detrás de la esfera */}
-          <div className="absolute inset-0 bg-primary/10 dark:bg-primary/20 rounded-full blur-[90px] pointer-events-none -z-10" />
+          <div className="absolute inset-0 bg-primary/8 dark:bg-primary/20 rounded-full blur-[90px] pointer-events-none -z-10" />
           <QuantumSphere />
         </motion.div>
       </motion.div>

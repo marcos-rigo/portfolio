@@ -1,11 +1,13 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Coffee, Languages, Kanban, Wind, Layers, Sparkles, Terminal } from "lucide-react";
 import { skills, SkillItem } from "@/lib/data";
 import { useLanguage } from "@/components/language-provider";
 import TechPlayground from "@/components/tech-playground";
+import SectionHeading from "@/components/section-heading";
 
 // Mapa de íconos vectoriales para habilidades sin archivo de imagen PNG local
 const iconFallbackMap: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -62,22 +64,11 @@ export default function SkillsGrid() {
   return (
     <section id="skills" className="py-24 px-6 max-w-5xl mx-auto">
       {/* Cabecera */}
-      <div className="text-center mb-16">
-        <span className="text-xs font-bold uppercase tracking-widest text-primary px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20">
-          {t.skills.tag}
-        </span>
-        <h2 className="font-heading font-extrabold text-3xl sm:text-5xl text-foreground mt-4 mb-3 tracking-tight">
-          {t.skills.title}
-        </h2>
-        <p className="text-xs sm:text-sm text-muted-foreground/80 max-w-lg mx-auto leading-relaxed font-sans mb-4">
-          {t.skills.desc}
-        </p>
-        <div className="w-12 h-1 bg-primary rounded-full mx-auto" />
-      </div>
+      <SectionHeading tag={t.skills.tag} title={t.skills.title} description={t.skills.desc} />
 
       {/* Selector de Pestañas (Tabs responsivas) */}
       <div className="flex justify-center mb-12">
-        <div className="flex flex-wrap items-center justify-center gap-1.5 p-1 rounded-2xl glass border border-black/5 dark:border-white/5 max-w-2xl w-full sm:w-auto">
+        <div className="flex flex-wrap items-center justify-center gap-1.5 p-1 rounded-2xl bg-card border border-border max-w-2xl w-full sm:w-auto">
           {categories.map((cat) => {
             const isActive = activeTab === cat;
             return (
@@ -110,9 +101,10 @@ export default function SkillsGrid() {
         className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5"
       >
         <AnimatePresence mode="popLayout">
-          {filteredSkills.map((skill) => {
+          {filteredSkills.map((skill, idx) => {
             const FallbackIcon = iconFallbackMap[skill.icon];
             const logoSrc = logoMap[skill.icon];
+            const isNavy = idx % 2 === 0;
 
             return (
               <motion.div
@@ -122,49 +114,36 @@ export default function SkillsGrid() {
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.35, ease: "easeOut" }}
                 key={skill.name}
-                className="rounded-2xl glass p-5 border border-black/5 dark:border-white/5 flex flex-col items-center justify-center text-center relative overflow-hidden group select-none hover:-translate-y-1.5 hover:bg-zinc-100/50 dark:hover:bg-zinc-900/30 transition-all duration-300"
-                style={{
-                  "--skill-glow": skill.glowColor,
-                } as React.CSSProperties}
+                className={`rounded-2xl p-5 border flex flex-col items-center justify-center text-center relative overflow-hidden group select-none hover:-translate-y-1.5 transition-all duration-300 ${
+                  isNavy
+                    ? "bg-[#16355C] dark:bg-[#0E2440] border-transparent"
+                    : "bg-card border-primary/40 hover:border-primary"
+                }`}
               >
-                {/* Fondo glow suave con color dinámico */}
-                <div
-                  className="absolute -inset-10 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"
-                  style={{ background: skill.glowColor }}
-                />
-                {/* Borde glow hover */}
-                <div
-                  className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10 pointer-events-none"
-                  style={{
-                    border: "1px solid",
-                    borderColor: skill.glowColor,
-                    boxShadow: `0 0 15px ${skill.glowColor}`,
-                  }}
-                />
-
                 {/* Renderizar Imagen PNG si existe o Fallback vectorial de Lucide */}
                 <div className="w-16 h-16 flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-110">
                   {logoSrc ? (
-                    <img
+                    <Image
                       src={logoSrc}
                       alt={`Logotipo oficial de ${skill.name}`}
+                      width={48}
+                      height={48}
                       className="w-12 h-12 object-contain"
-                      loading="lazy"
                     />
                   ) : FallbackIcon ? (
                     <FallbackIcon />
                   ) : (
-                    <Terminal className="w-10 h-10 text-primary" />
+                    <Terminal className={`w-10 h-10 ${isNavy ? "text-[#F5C84C]" : "text-primary"}`} />
                   )}
                 </div>
 
                 {/* Nombre de Habilidad */}
-                <span className="text-xs font-semibold text-foreground tracking-wide mt-1 block">
+                <span className={`text-xs font-semibold tracking-wide mt-1 block ${isNavy ? "text-white" : "text-foreground"}`}>
                   {getSkillName(skill.name)}
                 </span>
-                
+
                 {/* Categoría técnica en miniatura */}
-                <span className="text-[9px] font-bold text-muted-foreground/60 uppercase tracking-widest mt-1 block">
+                <span className={`text-[9px] font-bold uppercase tracking-widest mt-1 block ${isNavy ? "text-white/60" : "text-muted-foreground/70"}`}>
                   {t.skills.categories[skill.category as keyof typeof t.skills.categories]}
                 </span>
               </motion.div>

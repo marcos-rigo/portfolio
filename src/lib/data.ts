@@ -39,6 +39,7 @@ export interface ProjectItem {
   image: string;
   stack: string[];
   liveUrl: string;
+  repoUrl?: string;
   credentials?: string;
 }
 
@@ -48,11 +49,11 @@ export const personalInfo: PersonalInfo = {
   fullName: "Rigo Marcos",
   title: "Desarrollador Web Full Stack",
   subtitle: "Estudiante Avanzado de Ingeniería en Sistemas de Información",
-  bio: "Soy desarrollador web Full Stack con formación en Ingeniería en Sistemas de Información en la Universidad Tecnológica Nacional – Facultad Regional de Tucumán. Me especializo en el desarrollo web, combinando conocimientos técnicos con una constante actualización en nuevas tecnologías. Disfruto trabajar en equipo, resolver problemas y seguir aprendiendo para crecer tanto a nivel profesional como personal.",
+  bio: "Soy desarrollador web Full Stack, con formación en Ingeniería en Sistemas de Información en la UTN – Facultad Regional Tucumán. Me especializo en desarrollo web y trato de estar siempre actualizado con las tecnologías que uso. Me gusta trabajar en equipo, resolver problemas y seguir aprendiendo, tanto a nivel profesional como personal.",
   email: "marcos.rigo.10@gmail.com",
   phone: "+54 381 4163 584",
   location: "San Miguel de Tucumán, Tucumán, Argentina",
-  cvUrl: "https://drive.google.com/file/d/1zKbxronim7KzmlQsATcI4lG-Sa8ybHsZ/view?usp=sharing",
+  cvUrl: "/cv.pdf",
   github: "https://github.com/marcos-rigo",
   linkedin: "https://www.linkedin.com/in/marcos-rigo/",
   profileImage: "/img/profile.png",
@@ -65,7 +66,7 @@ export const experiences: ExperienceItem[] = [
     company: "Ministerio de Seguridad de Tucumán",
     role: "Desarrollador Full Stack",
     period: "2020 - Presente",
-    description: "Desarrollo integral de sitios institucionales y plataformas gubernamentales del Ministerio. Abarca desde el diseño de base de datos hasta la creación de APIs y maquetación de Frontend responsivo, con especial enfoque en testing funcional antes de producción para garantizar estabilidad y seguridad.",
+    description: "+50.000 usuarios mensuales atendidos y Lighthouse 90+ en producción. Desarrollo integral de sitios institucionales y plataformas gubernamentales del Ministerio: diseño de base de datos, APIs y frontend responsivo, con foco en testing funcional antes de cada despliegue para garantizar estabilidad y seguridad.",
   },
   {
     id: "exp-2",
@@ -107,7 +108,7 @@ export const projects: ProjectItem[] = [
     title: "Página Oficial José Farhat",
     client: "Secretario de Estado de Participación Ciudadana del Ministerio de Seguridad de Tucumán",
     date: "Abril 2022",
-    description: "Sitio web gubernamental oficial y blog de divulgación para el Secretario de Participación Ciudadana. Diseñado y optimizado para una alta legibilidad de artículos de opinión y noticias, adaptándose a cualquier dispositivo con alta fidelidad visual.",
+    description: "Sitio institucional y blog de opinión para un funcionario público con alto volumen de lectores. Prioricé la legibilidad de artículos largos con una jerarquía tipográfica pensada para lectura prolongada y un pipeline Gulp que sirve CSS/JS minificados. Resultado: tiempos de carga bajos y una experiencia de lectura consistente en cualquier dispositivo.",
     image: "/img/portfolio/jf.png",
     stack: ["HTML5", "CSS3", "JavaScript", "Bootstrap", "Gulp"],
     liveUrl: "https://josefarhat.com/",
@@ -117,7 +118,7 @@ export const projects: ProjectItem[] = [
     title: "Mesa Federal de Participación Ciudadana",
     client: "Consejo Federal de Seguridad de la Nación Argentina",
     date: "Noviembre 2021",
-    description: "Plataforma digital interactiva federal para la articulación de políticas públicas entre representantes de seguridad de todas las provincias argentinas. Facilita la carga de contenidos colaborativos, agendas de trabajo comunes y repositorio legal.",
+    description: "Plataforma para que representantes de seguridad de las 24 provincias coordinen políticas públicas sin depender de planillas y correos dispersos. Centralicé agendas, documentos y un repositorio legal compartido en una sola interfaz. Resultado: un punto único de referencia accesible para equipos distribuidos en todo el país.",
     image: "/img/portfolio/mpc.png",
     stack: ["HTML5", "CSS3", "JavaScript", "Bootstrap", "Gulp"],
     liveUrl: "https://www.mesafederalpc.online/",
@@ -127,7 +128,7 @@ export const projects: ProjectItem[] = [
     title: "Rolling Cucina",
     client: "Rolling Code School (Proyecto de Graduación)",
     date: "Febrero 2023",
-    description: "Aplicación web completa (MERN Stack) para la gestión y pedidos en línea de un restaurante. Incluye autenticación segura, menú interactivo y dinámico, carrito de compras, seguimiento de pedidos en tiempo real y una suite administrativa completa para la gestión de stocks, pedidos y roles de usuarios.",
+    description: "App de pedidos online para un restaurante, con carrito, seguimiento de pedidos en tiempo real y una suite administrativa completa. Implementé autenticación por roles (admin/cliente) para separar el panel de gestión de stock y pedidos del frontend de compra pública. Proyecto de graduación de Rolling Code School, desplegado en producción.",
     image: "/img/portfolio/rc.webp",
     stack: ["React", "Node.js", "Express.js", "MongoDB", "Tailwind CSS"],
     liveUrl: "https://rolling-cucina.netlify.app/",

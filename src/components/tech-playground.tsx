@@ -156,7 +156,7 @@ export default function TechPlayground() {
   };
 
   return (
-    <div className="mt-20 pt-16 border-t border-black/5 dark:border-white/5 w-full">
+    <div className="mt-20 pt-16 border-t border-border w-full">
       <div className="text-center mb-12">
         <h3 className="font-heading font-bold text-2xl sm:text-3xl text-foreground flex items-center justify-center gap-2">
           <Cpu className="w-6 h-6 text-primary animate-pulse" />
@@ -170,7 +170,7 @@ export default function TechPlayground() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
         
         {/* PANEL IZQUIERDO: Estantería de tecnologías disponibles (4 cols) */}
-        <div className="lg:col-span-5 flex flex-col justify-between rounded-3xl glass p-6 border border-black/5 dark:border-white/5 relative overflow-hidden">
+        <div className="lg:col-span-5 flex flex-col justify-between rounded-3xl bg-card p-6 border border-border relative overflow-hidden">
           <div className="absolute inset-0 bg-primary/2 -z-10" />
           <div>
             <div className="flex items-center gap-2 text-xs font-mono font-bold tracking-widest text-primary uppercase mb-6">
@@ -194,7 +194,7 @@ export default function TechPlayground() {
                     className={`px-3 py-2 rounded-xl border text-xs font-semibold font-sans tracking-wide cursor-grab active:cursor-grabbing select-none flex items-center gap-2 transition-all duration-300 ${
                       isSelected
                         ? "bg-primary/20 text-primary border-primary shadow-[0_0_12px_rgba(var(--primary-rgb),0.2)]"
-                        : "bg-zinc-200/40 dark:bg-zinc-800/30 border-black/5 dark:border-white/5 hover:border-zinc-400 dark:hover:border-zinc-700 hover:bg-zinc-200/70 dark:hover:bg-zinc-800/60"
+                        : "bg-muted border-border hover:border-primary/40 hover:bg-muted/70"
                     }`}
                     style={{
                       boxShadow: isSelected ? `0 0 10px ${skill.glowColor}` : "none"
@@ -209,12 +209,12 @@ export default function TechPlayground() {
           </div>
 
           {/* Mini Log Terminal de Análisis */}
-          <div className="mt-8 pt-4 border-t border-black/5 dark:border-white/5">
+          <div className="mt-8 pt-4 border-t border-border">
             <div className="flex items-center gap-2 text-[10px] font-mono font-bold tracking-widest text-muted-foreground uppercase mb-3">
               <Terminal className="w-3 h-3" />
               ANALYSIS CORE MONITOR
             </div>
-            <div className="bg-[#050505] rounded-xl p-3 border border-white/5 font-mono text-[9px] text-zinc-400 h-28 overflow-y-auto flex flex-col gap-1 select-none">
+            <div className="bg-[#0E2440] rounded-xl p-3 border border-white/10 font-mono text-[9px] text-white/60 h-28 overflow-y-auto flex flex-col gap-1 select-none">
               <AnimatePresence>
                 {analysisLog.length === 0 ? (
                   <span className="text-zinc-600 opacity-60 text-center block mt-6">
@@ -239,15 +239,15 @@ export default function TechPlayground() {
         </div>
 
         {/* PANEL CENTRAL: Cámara Cuántica de Escaneo (4 cols) */}
-        <div className="lg:col-span-3 flex flex-col items-center justify-between rounded-3xl glass p-6 border border-black/5 dark:border-white/5 relative overflow-hidden text-center">
-          <div 
+        <div className="lg:col-span-3 flex flex-col items-center justify-between rounded-3xl bg-card p-6 border border-border relative overflow-hidden text-center">
+          <div
             ref={dropZoneRef}
             className={`w-full h-full min-h-[300px] flex flex-col items-center justify-center border-2 border-dashed rounded-2xl p-4 transition-all duration-500 relative overflow-hidden select-none ${
-              scanning 
+              scanning
                 ? "border-primary bg-primary/5 shadow-[inset_0_0_20px_rgba(var(--primary-rgb),0.1)]"
                 : selectedTechs.length > 0
-                ? "border-primary/40 bg-zinc-200/10 dark:bg-zinc-900/10"
-                : "border-zinc-300 dark:border-zinc-800 bg-zinc-200/5 dark:bg-zinc-900/5 hover:border-zinc-400 dark:hover:border-zinc-700"
+                ? "border-primary/40 bg-muted/40"
+                : "border-border bg-muted/20 hover:border-primary/30"
             }`}
           >
             {/* Escáner Holográfico - Línea Láser Dinámica */}
@@ -263,7 +263,7 @@ export default function TechPlayground() {
             </AnimatePresence>
 
             {/* Rejilla de Fondo del Escáner */}
-            <div className="absolute inset-0 opacity-10 bg-[linear-gradient(to_right,#3b82f6_1px,transparent_1px),linear-gradient(to_bottom,#3b82f6_1px,transparent_1px)] bg-[size:1.2rem_1.2rem] pointer-events-none" />
+            <div className="absolute inset-0 opacity-[0.08] bg-[linear-gradient(to_right,#16355C_1px,transparent_1px),linear-gradient(to_bottom,#16355C_1px,transparent_1px)] bg-[size:1.2rem_1.2rem] pointer-events-none" />
 
             <div className="relative z-10 flex flex-col items-center">
               <Cpu className={`w-12 h-12 mb-4 text-primary transition-transform duration-500 ${scanning ? "rotate-180 scale-110" : ""}`} />
@@ -313,7 +313,7 @@ export default function TechPlayground() {
           {selectedTechs.length > 0 && (
             <button
               onClick={handleReset}
-              className="mt-4 w-full py-2 bg-zinc-200/40 dark:bg-zinc-800/30 border border-black/5 dark:border-white/5 hover:bg-zinc-200/80 dark:hover:bg-zinc-800/70 rounded-xl text-xs font-bold text-foreground cursor-pointer flex items-center justify-center gap-2 transition-all duration-300 active:scale-95"
+              className="mt-4 w-full py-2 bg-muted border border-border hover:bg-muted/70 rounded-xl text-xs font-bold text-foreground cursor-pointer flex items-center justify-center gap-2 transition-all duration-300 active:scale-95"
             >
               <RefreshCw className="w-3.5 h-3.5" />
               {texts.resetBtn}
@@ -322,7 +322,7 @@ export default function TechPlayground() {
         </div>
 
         {/* PANEL DERECHO: Visualización del Reporte en Vivo (4 cols) */}
-        <div className="lg:col-span-4 rounded-3xl glass p-6 border border-black/5 dark:border-white/5 relative overflow-hidden flex flex-col justify-between">
+        <div className="lg:col-span-4 rounded-3xl bg-card p-6 border border-border relative overflow-hidden flex flex-col justify-between">
           <div className="absolute inset-0 bg-primary/2 -z-10" />
           
           <div className="w-full">
@@ -366,14 +366,14 @@ export default function TechPlayground() {
                           className={`rounded-2xl p-4 border transition-all duration-500 relative overflow-hidden ${
                             isPerfect
                               ? "bg-primary/10 border-primary shadow-[0_0_15px_rgba(var(--primary-rgb),0.15)]"
-                              : "bg-zinc-200/30 dark:bg-zinc-900/40 border-black/5 dark:border-white/5"
+                              : "bg-muted/50 border-border"
                           }`}
                         >
                           {/* Partículas de Celebración en Perfect Match */}
                           {isPerfect && (
                             <div className="absolute inset-0 pointer-events-none">
                               <span className="absolute top-1 left-2 w-1.5 h-1.5 rounded-full bg-primary animate-ping" />
-                              <span className="absolute bottom-2 right-4 w-2 h-2 rounded-full bg-indigo-400 animate-ping" />
+                              <span className="absolute bottom-2 right-4 w-2 h-2 rounded-full bg-[#F5C84C] animate-ping" />
                             </div>
                           )}
 
@@ -397,12 +397,12 @@ export default function TechPlayground() {
                           </div>
 
                           {/* Barra de Progreso de Coincidencias */}
-                          <div className="w-full h-1.5 bg-zinc-950/20 dark:bg-zinc-950/50 rounded-full overflow-hidden mb-3">
+                          <div className="w-full h-1.5 bg-border rounded-full overflow-hidden mb-3">
                             <motion.div
                               initial={{ width: 0 }}
                               animate={{ width: `${percentage}%` }}
                               transition={{ duration: 0.8, ease: "easeOut" }}
-                              className={`h-full rounded-full ${isPerfect ? "bg-primary" : "bg-gradient-to-r from-primary to-indigo-500"}`}
+                              className="h-full rounded-full bg-primary"
                             />
                           </div>
 
@@ -419,7 +419,7 @@ export default function TechPlayground() {
                                   className={`text-[8px] font-bold px-1.5 py-0.5 rounded ${
                                     isMatched
                                       ? "bg-primary/20 text-primary border border-primary/20"
-                                      : "bg-zinc-950/10 dark:bg-zinc-950/30 text-muted-foreground/50"
+                                      : "bg-border text-muted-foreground/60"
                                   }`}
                                 >
                                   {tech}

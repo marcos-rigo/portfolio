@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { MapPin, Globe, Compass, GraduationCap, Languages, Clock, Sparkles, GitBranch } from "lucide-react";
 import { personalInfo } from "@/lib/data";
@@ -75,9 +76,9 @@ function LocalTimeWidget() {
         <span className="font-semibold text-foreground/80">UTC -3 (ART)</span>
       </div>
       
-      {/* Reloj Neón */}
+      {/* Reloj digital */}
       <div className="text-2xl sm:text-3xl font-mono font-bold tracking-tight text-foreground select-none flex items-center justify-center py-2 bg-black/5 dark:bg-black/35 rounded-xl border border-black/[0.03] dark:border-white/[0.03] shadow-inner text-center">
-        <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent filter drop-shadow-md">
+        <span className="text-primary">
           {time || "00:00:00 AM"}
         </span>
       </div>
@@ -176,7 +177,7 @@ function SkillsRadar() {
             fill="url(#radarGradient)"
             stroke="var(--primary)"
             strokeWidth="1.2"
-            className="filter drop-shadow-[0_0_4px_rgba(217,78,30,0.25)]"
+            className="filter drop-shadow-[0_0_4px_rgba(var(--primary-rgb),0.25)]"
           />
 
           {/* Puntos Oficiales en los Vértices */}
@@ -406,11 +407,12 @@ function GithubWidget() {
           {loading ? (
             <div className="w-12 h-12 rounded-full bg-zinc-500/10 border border-black/5 dark:border-white/5 animate-pulse" />
           ) : (
-            <img 
-              src={profile?.avatar_url || "https://avatars.githubusercontent.com/u/104380695?v=4"} 
-              alt="Avatar oficial de Marcos Rigo en GitHub" 
+            <Image
+              src={profile?.avatar_url || "https://avatars.githubusercontent.com/u/104380695?v=4"}
+              alt="Avatar oficial de Marcos Rigo en GitHub"
+              width={48}
+              height={48}
               className="w-12 h-12 rounded-full border border-primary/30 shadow-inner select-none shrink-0"
-              loading="lazy"
             />
           )}
           <div>
@@ -450,7 +452,7 @@ function GithubWidget() {
             <span className="text-[9px] font-bold text-muted-foreground uppercase tracking-widest block mb-0.5">
               Commits (Yr)
             </span>
-            <span className="text-sm font-mono font-bold text-foreground block bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+            <span className="text-sm font-mono font-bold text-primary block">
               {totalCommits}
             </span>
           </div>
@@ -609,13 +611,13 @@ export default function AboutBento() {
           onMouseMove={tiltBio.onMouseMove}
           onMouseLeave={tiltBio.onMouseLeave}
           style={tiltBio.style}
-          className="md:col-span-2 rounded-3xl glass p-8 border border-black/5 dark:border-white/5 gradient-border-card relative overflow-hidden group flex flex-col justify-between shadow-sm cursor-grab active:cursor-grabbing"
+          className="md:col-span-2 rounded-3xl bg-card border border-border relative overflow-hidden group flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow duration-300 p-8 cursor-grab active:cursor-grabbing"
         >
           {/* Luz de fondo sutil */}
           <div className="absolute -top-24 -left-24 w-48 h-48 rounded-full bg-primary/10 blur-3xl group-hover:bg-primary/15 transition-colors duration-500 pointer-events-none" />
           
           <div className="relative z-10">
-            <span className="text-[10px] font-bold uppercase tracking-widest text-primary px-2.5 py-1 rounded-md bg-primary/10 border border-primary/20 inline-block mb-4">
+            <span className="text-[10px] font-bold uppercase tracking-widest text-white px-3 py-1 rounded-full bg-primary inline-block mb-4">
               {t.bento.presentation}
             </span>
             <h3 className="font-heading font-extrabold text-2xl sm:text-3xl text-foreground mb-4 leading-tight">
@@ -646,12 +648,12 @@ export default function AboutBento() {
           onMouseMove={tiltLocation.onMouseMove}
           onMouseLeave={tiltLocation.onMouseLeave}
           style={tiltLocation.style}
-          className="rounded-3xl glass p-8 border border-black/5 dark:border-white/5 gradient-border-card relative overflow-hidden group flex flex-col justify-between shadow-sm cursor-grab active:cursor-grabbing"
+          className="rounded-3xl bg-card border border-border relative overflow-hidden group flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow duration-300 p-8 cursor-grab active:cursor-grabbing"
         >
           <div className="absolute inset-0 bg-zinc-500/5 group-hover:bg-zinc-500/10 transition-colors duration-500 -z-10 pointer-events-none" />
           
           <div className="relative z-10">
-            <span className="text-[10px] font-bold uppercase tracking-widest text-primary px-2.5 py-1 rounded-md bg-primary/10 border border-primary/20 inline-block mb-4">
+            <span className="text-[10px] font-bold uppercase tracking-widest text-white px-3 py-1 rounded-full bg-primary inline-block mb-4">
               {t.bento.location}
             </span>
             <h3 className="font-heading font-extrabold text-lg text-foreground mb-2 leading-tight flex items-center gap-2">
@@ -676,10 +678,10 @@ export default function AboutBento() {
           onMouseMove={tiltLanguages.onMouseMove}
           onMouseLeave={tiltLanguages.onMouseLeave}
           style={tiltLanguages.style}
-          className="rounded-3xl glass p-8 border border-black/5 dark:border-white/5 gradient-border-card relative overflow-hidden group flex flex-col justify-between shadow-sm cursor-grab active:cursor-grabbing"
+          className="rounded-3xl bg-card border border-border relative overflow-hidden group flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow duration-300 p-8 cursor-grab active:cursor-grabbing"
         >
           <div className="relative z-10">
-            <span className="text-[10px] font-bold uppercase tracking-widest text-primary px-2.5 py-1 rounded-md bg-primary/10 border border-primary/20 inline-block mb-4">
+            <span className="text-[10px] font-bold uppercase tracking-widest text-white px-3 py-1 rounded-full bg-primary inline-block mb-4">
               {t.bento.languages}
             </span>
             <h3 className="font-heading font-extrabold text-lg text-foreground mb-5 leading-tight flex items-center gap-2">
@@ -700,7 +702,7 @@ export default function AboutBento() {
                     whileInView={{ width: "100%" }}
                     viewport={{ once: true }}
                     transition={{ duration: 1.2, ease: "easeOut" }}
-                    className="h-full bg-gradient-to-r from-primary to-accent rounded-full"
+                    className="h-full bg-primary rounded-full"
                   />
                 </div>
               </div>
@@ -717,7 +719,7 @@ export default function AboutBento() {
                     whileInView={{ width: "75%" }}
                     viewport={{ once: true }}
                     transition={{ duration: 1.2, ease: "easeOut", delay: 0.15 }}
-                    className="h-full bg-gradient-to-r from-primary to-accent rounded-full"
+                    className="h-full bg-primary rounded-full"
                   />
                 </div>
                 <span className="text-[10px] text-muted-foreground/80 mt-2 block font-mono leading-normal">
@@ -735,14 +737,14 @@ export default function AboutBento() {
           onMouseMove={tiltSpec.onMouseMove}
           onMouseLeave={tiltSpec.onMouseLeave}
           style={tiltSpec.style}
-          className="md:col-span-2 rounded-3xl glass p-8 border border-black/5 dark:border-white/5 gradient-border-card relative overflow-hidden group flex flex-col justify-between shadow-sm cursor-grab active:cursor-grabbing"
+          className="md:col-span-2 rounded-3xl bg-card border border-border relative overflow-hidden group flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow duration-300 p-8 cursor-grab active:cursor-grabbing"
         >
           <div className="absolute -bottom-24 -right-24 w-48 h-48 rounded-full bg-primary/5 blur-3xl group-hover:bg-primary/10 transition-colors duration-500 pointer-events-none" />
 
           <div className="flex flex-col lg:flex-row items-center gap-8 relative z-10">
             {/* Texto de Especialización */}
             <div className="flex-1">
-              <span className="text-[10px] font-bold uppercase tracking-widest text-primary px-2.5 py-1 rounded-md bg-primary/10 border border-primary/20 inline-block mb-4">
+              <span className="text-[10px] font-bold uppercase tracking-widest text-white px-3 py-1 rounded-full bg-primary inline-block mb-4">
                 {t.bento.specialization}
               </span>
               <h3 className="font-heading font-extrabold text-xl text-foreground mb-3 leading-tight flex items-center gap-2">
@@ -796,19 +798,19 @@ export default function AboutBento() {
           onMouseMove={tiltGithub.onMouseMove}
           onMouseLeave={tiltGithub.onMouseLeave}
           style={tiltGithub.style}
-          className="md:col-span-3 rounded-3xl glass p-8 border border-black/5 dark:border-white/5 gradient-border-card relative overflow-hidden group flex flex-col justify-between shadow-sm cursor-grab active:cursor-grabbing"
+          className="md:col-span-3 rounded-3xl bg-card border border-border relative overflow-hidden group flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow duration-300 p-8 cursor-grab active:cursor-grabbing"
         >
           {/* Orbe de resplandor sutil */}
           <div className="absolute -top-32 -right-32 w-64 h-64 rounded-full bg-primary/5 blur-3xl group-hover:bg-primary/10 transition-colors duration-500 pointer-events-none" />
-          
+
           <div className="relative z-10 w-full">
-            <span className="text-[10px] font-bold uppercase tracking-widest text-primary px-2.5 py-1 rounded-md bg-primary/10 border border-primary/20 inline-block mb-4">
+            <span className="text-[10px] font-bold uppercase tracking-widest text-white px-3 py-1 rounded-full bg-primary inline-block mb-4">
               {t.bento.githubTag}
             </span>
             <h3 className="font-heading font-extrabold text-2xl text-foreground mb-4 leading-tight">
               {t.bento.githubTitle}
             </h3>
-            <p className="text-xs sm:text-sm text-muted-foreground/80 leading-relaxed font-sans mb-6">
+            <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed font-sans mb-6">
               {t.bento.githubDesc}
             </p>
             

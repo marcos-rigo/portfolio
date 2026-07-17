@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef } from "react";
 import { useTheme } from "next-themes";
+import { usePrefersReducedMotion } from "@/hooks/use-reduced-motion";
 
 interface FluidBlob {
   x: number;
@@ -29,8 +30,11 @@ export default function CanvasBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const mouseRef = useRef({ x: 0, y: 0, active: false });
   const { resolvedTheme } = useTheme();
+  const prefersReducedMotion = usePrefersReducedMotion();
 
   useEffect(() => {
+    if (prefersReducedMotion) return;
+
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -57,16 +61,16 @@ export default function CanvasBackground() {
       const blobColors =
         resolvedTheme === "dark"
           ? [
-              "rgba(255, 0, 63, 0.18)",   // Crimson Rubí Neón más rojo
-              "rgba(139, 92, 246, 0.15)",  // Violeta Eléctrico exacto
-              "rgba(255, 0, 63, 0.10)",   // Crimson secundario más rojo
-              "rgba(139, 92, 246, 0.10)",  // Violeta secundario
+              "rgba(216, 31, 42, 0.16)",   // Rojo de marca
+              "rgba(247, 243, 234, 0.06)",  // Crema tenue
+              "rgba(216, 31, 42, 0.09)",   // Rojo secundario
+              "rgba(245, 200, 76, 0.05)",  // Dorado terciario, muy sutil
             ]
           : [
-              "rgba(196, 0, 45, 0.12)",    // Crimson Rubí ajustado para WCAG AAA
-              "rgba(109, 40, 217, 0.08)",   // Violeta Eléctrico ajustado para WCAG AAA
-              "rgba(196, 0, 45, 0.06)",    // Crimson secundario claro
-              "rgba(109, 40, 217, 0.05)",   // Violeta secundario claro
+              "rgba(22, 53, 92, 0.07)",    // Azul marino, trazo principal
+              "rgba(216, 31, 42, 0.05)",   // Rojo, muy sutil
+              "rgba(22, 53, 92, 0.04)",    // Azul marino secundario
+              "rgba(245, 200, 76, 0.04)",  // Dorado, apenas perceptible
             ];
 
       for (let i = 0; i < blobCount; i++) {
@@ -90,7 +94,7 @@ export default function CanvasBackground() {
       particles = [];
       // Ajustar cantidad de partículas según tamaño de pantalla
       const particleCount = Math.min(Math.floor((w * h) / 18000), 75);
-      const particleColor = resolvedTheme === "dark" ? "255, 31, 90" : "200, 0, 54";
+      const particleColor = resolvedTheme === "dark" ? "247, 243, 234" : "22, 53, 92";
 
       for (let i = 0; i < particleCount; i++) {
         particles.push({
@@ -246,7 +250,9 @@ export default function CanvasBackground() {
       document.removeEventListener("mouseleave", handleMouseLeave);
       cancelAnimationFrame(animationFrameId);
     };
-  }, [resolvedTheme]);
+  }, [resolvedTheme, prefersReducedMotion]);
+
+  if (prefersReducedMotion) return null;
 
   return (
     <>

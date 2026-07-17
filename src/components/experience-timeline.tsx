@@ -6,6 +6,7 @@ import { Calendar, Briefcase, ChevronRight } from "lucide-react";
 import { experiences, ExperienceItem } from "@/lib/data";
 import { use3DTilt } from "@/hooks/use-3d-tilt";
 import { useLanguage } from "@/components/language-provider";
+import SectionHeading from "@/components/section-heading";
 
 interface TiltCardProps {
   experience: ExperienceItem;
@@ -34,8 +35,8 @@ function TiltCard({ experience, index }: TiltCardProps) {
       }`}
     >
       {/* Marcador Central del Eje */}
-      <div className="absolute left-4 md:left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-primary/25 dark:bg-primary/20 border border-primary flex items-center justify-center z-10 shadow-md">
-        <div className="w-3.5 h-3.5 rounded-full bg-primary" />
+      <div className="absolute left-4 md:left-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-primary border-4 border-background flex items-center justify-center z-10 shadow-md">
+        <div className="w-2 h-2 rounded-full bg-white" />
       </div>
 
       {/* Caja de la Experiencia con Efecto 3D Tilt */}
@@ -47,11 +48,9 @@ function TiltCard({ experience, index }: TiltCardProps) {
           style={{
             ...tilt.style,
           }}
-          className="rounded-3xl glass p-6 sm:p-8 border border-black/5 dark:border-white/5 gradient-border-card relative group cursor-default shadow-md hover:shadow-xl hover:border-primary/25 transition-all duration-300 select-none overflow-hidden"
+          className="rounded-3xl bg-card border border-border relative group cursor-default shadow-sm hover:shadow-xl hover:border-primary/30 transition-all duration-300 select-none overflow-hidden p-6 sm:p-8"
         >
-          {/* Destello luminoso de fondo */}
-          <div className="absolute -top-32 -left-32 w-64 h-64 rounded-full bg-primary/5 blur-3xl pointer-events-none group-hover:bg-primary/10 transition-all duration-500" />
-          
+
           <div className="flex flex-col gap-3">
             {/* Cabecera de la Tarjeta */}
             <div className="flex flex-wrap items-center gap-2 text-xs font-semibold text-primary">
@@ -95,20 +94,12 @@ export default function ExperienceTimeline() {
   return (
     <section id="experience" className="py-24 px-6 max-w-5xl mx-auto relative">
       {/* Título de la Sección */}
-      <div className="text-center mb-16 relative">
-        <span className="text-xs font-bold uppercase tracking-widest text-primary px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20">
-          {t.experience.tag}
-        </span>
-        <h2 className="font-heading font-extrabold text-3xl sm:text-5xl text-foreground mt-4 mb-3 tracking-tight">
-          {t.experience.title}
-        </h2>
-        <div className="w-12 h-1 bg-primary rounded-full mx-auto" />
-      </div>
+      <SectionHeading tag={t.experience.tag} title={t.experience.title} />
 
       {/* Contenedor de la línea de tiempo */}
       <div className="relative mt-12 pl-4 md:pl-0">
         {/* Eje de la línea vertical */}
-        <div className="absolute left-4 md:left-1/2 top-0 bottom-0 -translate-x-1/2 w-0.5 bg-gradient-to-b from-primary via-primary/30 to-transparent" />
+        <div className="absolute left-4 md:left-1/2 top-0 bottom-0 -translate-x-1/2 w-0.5 bg-primary/30" />
 
         {/* Mapeo de experiencias */}
         <div className="flex flex-col">

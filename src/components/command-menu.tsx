@@ -351,7 +351,7 @@ export default function CommandMenu() {
       <div className="fixed bottom-6 right-6 z-40 hidden md:block">
         <button
           onClick={() => setIsOpen(true)}
-          className="flex items-center gap-2 px-3 py-1.5 rounded-full glass border border-black/5 dark:border-white/5 shadow-md hover:shadow-lg text-xs text-muted-foreground hover:text-foreground hover:scale-105 transition-all duration-300 cursor-pointer"
+          className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-card border border-border shadow-md hover:shadow-lg text-xs text-muted-foreground hover:text-foreground hover:scale-105 transition-all duration-300 cursor-pointer"
         >
           <Sparkles className="w-3.5 h-3.5 text-primary animate-pulse" />
           <span>{locale === "es" ? "Presiona" : "Press"}</span>
@@ -379,11 +379,11 @@ export default function CommandMenu() {
               exit={{ opacity: 0, scale: 0.95, y: -20 }}
               transition={{ duration: 0.25, ease: "easeOut" }}
               ref={menuRef}
-              className="w-full max-w-xl max-h-[480px] rounded-3xl glass border border-black/5 dark:border-white/5 shadow-2xl overflow-hidden flex flex-col z-10"
+              className="w-full max-w-xl max-h-[480px] rounded-3xl bg-card border border-border shadow-2xl overflow-hidden flex flex-col z-10"
             >
               {isTerminalMode ? (
                 /* === MODO TERMINAL DE DESARROLLADOR === */
-                <div className="flex-1 flex flex-col bg-[#050508] text-emerald-400 font-mono text-xs p-6 overflow-hidden select-text">
+                <div className="flex-1 flex flex-col bg-[#0E2440] text-emerald-400 font-mono text-xs p-6 overflow-hidden select-text">
                   <div 
                     ref={terminalHistoryRef}
                     className="flex-1 overflow-y-auto custom-scrollbar flex flex-col gap-1.5 mb-3 h-[280px] pr-2"
@@ -422,7 +422,7 @@ export default function CommandMenu() {
                 /* === MODO MENU DE COMANDOS ESTÁNDAR === */
                 <>
                   {/* Buscador */}
-                  <div className="flex items-center gap-3 px-6 py-4 border-b border-black/5 dark:border-white/5">
+                  <div className="flex items-center gap-3 px-6 py-4 border-b border-border">
                     <Search className="w-5 h-5 text-muted-foreground shrink-0" />
                     <input
                       ref={inputRef}
@@ -468,7 +468,7 @@ export default function CommandMenu() {
                                       className={`flex items-center justify-between px-4 py-3 rounded-2xl w-full text-left transition-all duration-200 cursor-pointer ${
                                         isSelected
                                           ? "bg-primary text-white"
-                                          : "hover:bg-zinc-100 dark:hover:bg-zinc-900"
+                                          : "hover:bg-muted"
                                       }`}
                                     >
                                       <div className="flex items-center gap-3">
@@ -476,7 +476,7 @@ export default function CommandMenu() {
                                           className={`p-2 rounded-xl shrink-0 ${
                                             isSelected
                                               ? "bg-white/20 text-white"
-                                              : "bg-zinc-100 dark:bg-zinc-900 text-foreground border border-black/5 dark:border-white/5"
+                                              : "bg-muted text-foreground border border-border"
                                           }`}
                                         >
                                           <Icon className="w-4 h-4" />
@@ -514,7 +514,7 @@ export default function CommandMenu() {
               )}
 
               {/* Pie de menú de comandos */}
-              <div className="px-6 py-3 border-t border-black/5 dark:border-white/5 bg-zinc-500/5 text-[10px] text-muted-foreground flex items-center justify-between">
+              <div className="px-6 py-3 border-t border-border bg-muted text-[10px] text-muted-foreground flex items-center justify-between">
                 <div className="flex gap-4">
                   {isTerminalMode ? (
                     <span>

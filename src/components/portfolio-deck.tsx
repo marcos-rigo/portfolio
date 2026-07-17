@@ -1,10 +1,27 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { ExternalLink, Calendar, User, Code, Eye, X, Copy, Check, Sparkles } from "lucide-react";
 import { projects, ProjectItem } from "@/lib/data";
 import { useLanguage } from "@/components/language-provider";
+import SectionHeading from "@/components/section-heading";
+
+const Github = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    {...props}
+  >
+    <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+    <path d="M9 18c-4.51 2-5-2-7-2" />
+  </svg>
+);
 
 // =========================================================
 // 1. WIDGET: VELOCÍMETROS METRICAS LIGHTHOUSE (ESTILO GOOGLE)
@@ -205,22 +222,11 @@ export default function PortfolioDeck() {
   return (
     <section id="portfolio" className="py-24 px-6 max-w-5xl mx-auto">
       {/* Cabecera de Sección */}
-      <div className="text-center mb-16">
-        <span className="text-xs font-bold uppercase tracking-widest text-primary px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20">
-          {t.portfolio.tag}
-        </span>
-        <h2 className="font-heading font-extrabold text-3xl sm:text-5xl text-foreground mt-4 mb-3 tracking-tight">
-          {t.portfolio.title}
-        </h2>
-        <p className="text-xs sm:text-sm text-muted-foreground/80 max-w-lg mx-auto leading-relaxed font-sans mb-4">
-          {t.portfolio.desc}
-        </p>
-        <div className="w-12 h-1 bg-primary rounded-full mx-auto" />
-      </div>
+      <SectionHeading tag={t.portfolio.tag} title={t.portfolio.title} description={t.portfolio.desc} />
 
       {/* Categorías de Filtro */}
       <div className="flex justify-center mb-12">
-        <div className="flex items-center gap-1 p-1 rounded-2xl glass border border-black/5 dark:border-white/5">
+        <div className="flex items-center gap-1 p-1 rounded-2xl bg-card border border-border">
           {filterCategories.map((cat) => {
             const isActive = filter === cat;
             return (
@@ -229,7 +235,7 @@ export default function PortfolioDeck() {
                 onClick={() => setFilter(cat)}
                 className={`relative px-5 py-2 rounded-xl text-xs font-bold tracking-wide transition-colors duration-300 cursor-pointer ${
                   isActive
-                    ? "text-white dark:text-zinc-950"
+                    ? "text-white"
                     : "text-muted-foreground hover:text-foreground"
                 }`}
               >
@@ -265,15 +271,16 @@ export default function PortfolioDeck() {
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.4, ease: "easeOut" }}
                 key={proj.id}
-                className="rounded-3xl glass border border-black/5 dark:border-white/5 gradient-border-card overflow-hidden flex flex-col group hover:-translate-y-2 hover:shadow-xl hover:border-primary/20 transition-all duration-300"
+                className="rounded-3xl bg-card border border-border overflow-hidden flex flex-col group hover:-translate-y-2 hover:shadow-xl hover:border-primary/30 transition-all duration-300"
               >
                 {/* Imagen del Proyecto */}
-                <div className="relative h-48 w-full overflow-hidden border-b border-black/5 dark:border-white/5">
-                  <img
+                <div className="relative h-48 w-full overflow-hidden border-b border-border">
+                  <Image
                     src={proj.image}
                     alt={`Captura de pantalla de ${translatedTitle}`}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    loading="lazy"
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   
                   {/* Overlay de acciones rápidas */}
@@ -303,12 +310,12 @@ export default function PortfolioDeck() {
                     {/* Badges de stack */}
                     <div className="flex flex-wrap gap-1.5 mb-3">
                       {proj.stack.slice(0, 3).map((s) => (
-                        <span key={s} className="px-2 py-0.5 rounded-md bg-zinc-200/50 dark:bg-zinc-800/40 text-[9px] font-bold text-muted-foreground/80 tracking-wide uppercase border border-black/[0.03] dark:border-white/[0.03]">
+                        <span key={s} className="px-2 py-0.5 rounded-full bg-muted text-[9px] font-bold text-muted-foreground tracking-wide uppercase border border-border">
                           {s}
                         </span>
                       ))}
                       {proj.stack.length > 3 && (
-                        <span className="px-2 py-0.5 rounded-md bg-zinc-200/50 dark:bg-zinc-800/40 text-[9px] font-bold text-muted-foreground/80 tracking-wide">
+                        <span className="px-2 py-0.5 rounded-full bg-muted text-[9px] font-bold text-muted-foreground tracking-wide">
                           +{proj.stack.length - 3}
                         </span>
                       )}
@@ -369,7 +376,7 @@ export default function PortfolioDeck() {
                 {/* Botón de cerrar */}
                 <button
                   onClick={() => setSelectedProject(null)}
-                  className="absolute top-4 right-4 p-2 rounded-full glass hover:bg-zinc-200/50 dark:hover:bg-zinc-800/50 text-foreground transition-colors duration-300 z-20 cursor-pointer"
+                  className="absolute top-4 right-4 p-2 rounded-full bg-card border border-border hover:bg-muted text-foreground transition-colors duration-300 z-20 cursor-pointer"
                   aria-label="Cerrar modal"
                 >
                   <X className="w-4 h-4" />
@@ -377,10 +384,12 @@ export default function PortfolioDeck() {
 
                 {/* Encabezado con imagen */}
                 <div className="relative h-64 w-full shrink-0 overflow-hidden border-b border-black/5 dark:border-white/5">
-                  <img
+                  <Image
                     src={selectedProject.image}
                     alt={translatedModalTitle}
-                    className="w-full h-full object-cover"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 672px"
+                    className="object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-6">
                     <div>
@@ -488,9 +497,20 @@ export default function PortfolioDeck() {
                       <span>{t.portfolio.modal.visit}</span>
                       <ExternalLink className="w-4 h-4" />
                     </a>
+                    {selectedProject.repoUrl && (
+                      <a
+                        href={selectedProject.repoUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center justify-center gap-2 px-6 py-3 rounded-full border-2 border-foreground text-foreground hover:bg-foreground hover:text-background font-bold text-sm hover:scale-[1.02] transition-all duration-300 cursor-pointer"
+                      >
+                        <Github className="w-4 h-4" />
+                        <span>{locale === "es" ? "Ver Repositorio" : "View Repository"}</span>
+                      </a>
+                    )}
                     <button
                       onClick={() => setSelectedProject(null)}
-                      className="px-6 py-3 rounded-full border border-black/5 dark:border-white/5 glass hover:bg-zinc-100 dark:hover:bg-zinc-900 font-bold text-sm hover:scale-[1.02] transition-transform duration-300 cursor-pointer"
+                      className="px-6 py-3 rounded-full border-2 border-foreground text-foreground hover:bg-foreground hover:text-background font-bold text-sm hover:scale-[1.02] transition-all duration-300 cursor-pointer"
                     >
                       {t.portfolio.modal.close}
                     </button>

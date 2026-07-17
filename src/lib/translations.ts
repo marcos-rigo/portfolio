@@ -103,7 +103,6 @@ export interface TranslationSchema {
     title: string;
     desc: string;
     emailLabel: string;
-    phoneLabel: string;
     locationLabel: string;
     nameLabel: string;
     namePlaceholder: string;
@@ -146,13 +145,13 @@ export const translations: Record<"es" | "en", TranslationSchema> = {
     },
     hero: {
       tag: "Ingeniería en Sistemas & Desarrollo Web",
-      bio: "Combino rigurosidad técnica de sistemas con la pasión por el diseño de interfaces moderno, creando productos rápidos, 100% responsivos y pulidos al milímetro.",
+      bio: "Desarrollador Full Stack con base en Ingeniería en Sistemas. Me gusta cuidar el detalle: que el sitio cargue rápido, se vea bien en cualquier pantalla, y no tenga bugs escondidos.",
       ctaView: "Ver mi trabajo",
       ctaDownload: "Descargar CV",
     },
     bento: {
       presentation: "Presentación",
-      bioTitle: "Diseño de software con enfoque integral y alta escalabilidad",
+      bioTitle: "Sobre mí",
       location: "Ubicación",
       locationDesc: "San Miguel de Tucumán. Disponible para trabajar de forma remota y relocalización presencial.",
       timezone: "Huso Horario",
@@ -164,12 +163,12 @@ export const translations: Record<"es" | "en", TranslationSchema> = {
       englishDesc: "Estudios avanzados cursados en el Instituto Cultural Anglo.",
       specialization: "Especialización",
       specTitle: "Ingeniería de Software Aplicada",
-      specDesc1: "Mi formación en Sistemas de Información me capacita para estructurar arquitecturas escalables, diseñar modelos de datos estructurados y optimizar algoritmos.",
+      specDesc1: "De la carrera me quedó la costumbre de pensar cómo estructurar las cosas antes de escribir código: cómo modelo los datos, cómo separo responsabilidades, qué tan escalable necesita ser algo. En el día a día eso se traduce en APIs REST con Node.js/Express, bases de datos en MongoDB o SQL según el proyecto, y frontend en React/Next.js.",
       specDesc2: "Esto lo traslado a mi desarrollo Full Stack, estructurando APIs REST seguras con Node.js/Express, bases de datos optimizadas con MongoDB o SQL, y código modular de alto rendimiento en React/Next.js.",
       skillsMap: "Mapeo de Capacidades",
       githubTag: "Actividad en tiempo real",
       githubTitle: "Integración con GitHub",
-      githubDesc: "Estadísticas vivas consumidas directamente desde mi perfil oficial en GitHub, con almacenamiento en caché local optimizado.",
+      githubDesc: "Datos en vivo desde mi perfil de GitHub.",
       githubFollowers: "Seguidores",
       githubRepos: "Repositorios públicos",
       githubActivity: "Historial de Contribuciones (Último Año)",
@@ -185,7 +184,7 @@ export const translations: Record<"es" | "en", TranslationSchema> = {
         "exp-1": {
           role: "Desarrollador Full Stack",
           company: "Ministerio de Seguridad de Tucumán",
-          description: "Desarrollo integral de sitios institucionales y plataformas gubernamentales del Ministerio. Abarca desde el diseño de base de datos hasta la creación de APIs y maquetación de Frontend responsivo, con especial enfoque en testing funcional antes de producción para garantizar estabilidad y seguridad.",
+          description: "+50.000 usuarios mensuales atendidos y Lighthouse 90+ en producción. Desarrollo integral de sitios institucionales y plataformas gubernamentales del Ministerio: diseño de base de datos, APIs y frontend responsivo, con foco en testing funcional antes de cada despliegue para garantizar estabilidad y seguridad.",
         },
         "exp-2": {
           role: "Desarrollador Web",
@@ -220,7 +219,7 @@ export const translations: Record<"es" | "en", TranslationSchema> = {
         about: "Sobre el Proyecto",
         stack: "Stack Tecnológico",
         demo: "Acceso de Demostración",
-        demoDesc: "Puedes probar la aplicación utilizando la cuenta de prueba ya registrada:",
+        demoDesc: "Podés probar la aplicación utilizando la cuenta de prueba ya registrada:",
         copy: "Copiar",
         copied: "Copiado",
         visit: "Visitar Sitio Oficial",
@@ -235,46 +234,45 @@ export const translations: Record<"es" | "en", TranslationSchema> = {
         "proj-1": {
           title: "Página Oficial José Farhat",
           client: "Secretario de Estado de Participación Ciudadana del Ministerio de Seguridad de Tucumán",
-          description: "Sitio web gubernamental oficial y blog de divulgación para el Secretario de Participación Ciudadana. Diseñado y optimizado para una alta legibilidad de artículos de opinión y noticias, adaptándose a cualquier dispositivo con alta fidelidad visual.",
+          description: "Sitio institucional y blog de opinión para un funcionario público con alto volumen de lectores. Prioricé la legibilidad de artículos largos con una jerarquía tipográfica pensada para lectura prolongada y un pipeline Gulp que sirve CSS/JS minificados. Resultado: tiempos de carga bajos y una experiencia de lectura consistente en cualquier dispositivo.",
         },
         "proj-2": {
           title: "Mesa Federal de Participación Ciudadana",
           client: "Consejo Federal de Seguridad de la Nación Argentina",
-          description: "Plataforma digital interactiva federal para la articulación de políticas públicas entre representantes de seguridad de todas las provincias argentinas. Facilita la carga de contenidos colaborativos, agendas de trabajo comunes y repositorio legal.",
+          description: "Plataforma para que representantes de seguridad de las 24 provincias coordinen políticas públicas sin depender de planillas y correos dispersos. Centralicé agendas, documentos y un repositorio legal compartido en una sola interfaz. Resultado: un punto único de referencia accesible para equipos distribuidos en todo el país.",
         },
         "proj-3": {
           title: "Rolling Cucina",
           client: "Rolling Code School (Proyecto de Graduación)",
-          description: "Aplicación web completa (MERN Stack) para la gestión y pedidos en línea de un restaurante. Incluye autenticación segura, menú interactivo y dinámico, carrito de compras, seguimiento de pedidos en tiempo real y una suite administrativa completa para la gestión de stocks, pedidos y roles de usuarios.",
+          description: "App de pedidos online para un restaurante, con carrito, seguimiento de pedidos en tiempo real y una suite administrativa completa. Implementé autenticación por roles (admin/cliente) para separar el panel de gestión de stock y pedidos del frontend de compra pública. Proyecto de graduación de Rolling Code School, desplegado en producción.",
         },
       },
     },
     contact: {
       tag: "Contacto",
       title: "Hablemos",
-      desc: "¿Tienes una propuesta de proyecto, vacante en tu empresa o quieres conversar sobre sistemas? Rellena el formulario o envíame un mensaje directo.",
+      desc: "¿Tenés una propuesta de proyecto, una vacante en tu empresa, o simplemente querés charlar sobre sistemas? Escribime por acá o mandame un mensaje directo.",
       emailLabel: "Correo Electrónico",
-      phoneLabel: "Teléfono Directo",
       locationLabel: "Ubicación",
       nameLabel: "Nombre completo",
       namePlaceholder: "Ej. Juan Pérez",
       emailFormLabel: "Dirección de correo",
       emailPlaceholder: "Ej. juan@correo.com",
       messageLabel: "Mensaje",
-      messagePlaceholder: "Cuéntame sobre tu idea o proyecto...",
+      messagePlaceholder: "Contame sobre tu idea o proyecto...",
       submit: "Enviar mensaje",
       submitting: "Enviando mensaje...",
       successTitle: "¡Mensaje Enviado con éxito!",
       successDesc: "Muchas gracias por contactarme. He recibido tu mensaje e iniciaré la lectura para responderte a la brevedad.",
       confettiLabel: "Lanzando Confeti",
-      footer: "Marcos Rigo. Desarrollado con Next.js & Tailwind.",
+      footer: "Marcos Rigo. Hecho con Next.js y Tailwind.",
     },
     console: {
       bootMessage1: "Marcos-OS v2026.5 [Tucumán, Argentina]",
       bootMessage2: "Estudiante de Ingeniería en Sistemas de Información - UTN",
       bootMessage3: "Consola de comandos interactiva de Marcos Rigo.",
-      bootMessage4: "Escribe /help para ver la lista de utilidades de la consola.",
-      promptPlaceholder: "Escribe un comando... (intenta /help o /exit)",
+      bootMessage4: "Escribí /help para ver la lista de utilidades de la consola.",
+      promptPlaceholder: "Escribí un comando... (intentá /help o /exit)",
       footerMode: "Consola Hacker",
       helpLines: [
         " ",
@@ -312,7 +310,6 @@ export const translations: Record<"es" | "en", TranslationSchema> = {
         " ",
         "--- VÍAS DE CONTACTO DIRECTO ---",
         `Email     : ${personalInfo.email}`,
-        `Teléfono  : ${personalInfo.phone}`,
         `Ubicación : ${personalInfo.location}`,
         "LinkedIn  : https://www.linkedin.com/in/marcos-rigo/",
         "GitHub    : https://github.com/marcos-rigo",
@@ -320,7 +317,7 @@ export const translations: Record<"es" | "en", TranslationSchema> = {
       ],
       themeSuccess: "SUCCESS: Tema cambiado con éxito.",
       cvSuccess: "SUCCESS: Abriendo Currículum en PDF en una nueva pestaña.",
-      errorCommand: "Error: Comando no reconocido. Escribe /help para ver la lista.",
+      errorCommand: "Error: Comando no reconocido. Escribí /help para ver la lista.",
     },
   },
   en: {
@@ -372,7 +369,7 @@ export const translations: Record<"es" | "en", TranslationSchema> = {
         "exp-1": {
           role: "Full Stack Developer",
           company: "Ministry of Security of Tucumán",
-          description: "End-to-end development of institutional websites and government web platforms for the Ministry. Spans database schema design, REST APIs, and responsive frontend maquetation, focusing on strict pre-production testing to guarantee stability and security.",
+          description: "50,000+ monthly users served and 90+ Lighthouse scores in production. End-to-end development of institutional websites and government platforms for the Ministry: database design, REST APIs, and responsive frontend, with strict pre-production testing to guarantee stability and security.",
         },
         "exp-2": {
           role: "Web Developer",
@@ -422,17 +419,17 @@ export const translations: Record<"es" | "en", TranslationSchema> = {
         "proj-1": {
           title: "José Farhat Official Site",
           client: "Secretary of State for Citizen Participation of the Ministry of Security",
-          description: "Official governmental website and blog for the Secretary of Citizen Participation. Tailored and optimized for high-readability of articles, newsletters, and news, adapting beautifully to any desktop or mobile device.",
+          description: "Institutional site and opinion blog for a public official with a high volume of readers. I focused on readability for long-form articles with a typographic hierarchy built for extended reading, plus a Gulp pipeline serving minified CSS/JS. Result: low load times and a consistent reading experience on any device.",
         },
         "proj-2": {
           title: "Federal Board of Citizen Participation",
           client: "Federal Security Council of Argentina",
-          description: "Federal digital platform built for co-working and public policies coordinate between security representatives of all Argentine provinces. Supports collaborative document editing, common agendas, and legal archives.",
+          description: "A platform for security representatives from Argentina's 24 provinces to coordinate public policy without relying on scattered spreadsheets and emails. I centralized agendas, documents, and a shared legal repository into a single interface. Result: one source of truth accessible to teams distributed across the country.",
         },
         "proj-3": {
           title: "Rolling Cucina",
           client: "Rolling Code School (Graduation Project)",
-          description: "End-to-end MERN stack web application built for restaurant administration and online ordering. Includes secure token auth, interactive dynamic food menu, shopping cart, real-time order tracking, and a comprehensive admin suite for stock, orders, and roles management.",
+          description: "Online ordering app for a restaurant, with a shopping cart, real-time order tracking, and a complete admin suite. I implemented role-based auth (admin/customer) to separate the stock and order management panel from the public storefront. Rolling Code School graduation project, deployed to production.",
         },
       },
     },
@@ -441,7 +438,6 @@ export const translations: Record<"es" | "en", TranslationSchema> = {
       title: "Let's Talk",
       desc: "Have an exciting project idea, a vacancy in your engineering team, or want to discuss systems? Fill in the form or send me a direct message.",
       emailLabel: "Email Address",
-      phoneLabel: "Direct Phone",
       locationLabel: "Location",
       nameLabel: "Full name",
       namePlaceholder: "e.g. John Doe",
@@ -499,7 +495,6 @@ export const translations: Record<"es" | "en", TranslationSchema> = {
         " ",
         "--- DIRECT CONTACT CHANNELS ---",
         `Email     : ${personalInfo.email}`,
-        `Phone     : ${personalInfo.phone}`,
         `Location  : ${personalInfo.location}`,
         "LinkedIn  : https://www.linkedin.com/in/marcos-rigo/",
         "GitHub    : https://github.com/marcos-rigo",

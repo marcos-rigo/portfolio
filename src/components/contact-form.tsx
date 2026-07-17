@@ -2,10 +2,11 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Mail, Phone, MapPin, Send, CheckCircle, Sparkles } from "lucide-react";
+import { Mail, MapPin, Send, CheckCircle, Sparkles } from "lucide-react";
 import { personalInfo } from "@/lib/data";
 import Magnetic from "@/components/magnetic";
 import { useLanguage } from "@/components/language-provider";
+import SectionHeading from "@/components/section-heading";
 
 const Github = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
@@ -62,7 +63,7 @@ export default function ContactForm() {
   };
 
   const triggerConfetti = () => {
-    const colors = ["#ff003f", "#8b5cf6", "#3b82f6", "#10b981", "#ec4899", "#c4002d"];
+    const colors = ["#D81F2A", "#F5C84C", "#16355C", "#B8121D", "#0E2440", "#10b981"];
     const particles: ConfettiParticle[] = Array.from({ length: 70 }).map((_, i) => ({
       id: i,
       x: window.innerWidth / 2,
@@ -122,25 +123,14 @@ export default function ContactForm() {
       </div>
 
       {/* Cabecera de la Sección */}
-      <div className="text-center mb-16">
-        <span className="text-xs font-bold uppercase tracking-widest text-primary px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20">
-          {t.contact.tag}
-        </span>
-        <h2 className="font-heading font-extrabold text-3xl sm:text-5xl text-foreground mt-4 mb-3 tracking-tight">
-          {t.contact.title}
-        </h2>
-        <p className="text-xs sm:text-sm text-muted-foreground/80 max-w-lg mx-auto leading-relaxed font-sans mb-4">
-          {t.contact.desc}
-        </p>
-        <div className="w-12 h-1 bg-primary rounded-full mx-auto" />
-      </div>
+      <SectionHeading tag={t.contact.tag} title={t.contact.title} description={t.contact.desc} />
 
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 mt-12 items-start">
         {/* Columna Izquierda: Información de contacto (Ocupa 2 columnas) */}
         <div className="lg:col-span-2 flex flex-col gap-6 w-full">
           {/* Ficha de Correo */}
           <Magnetic range={50} strength={0.2}>
-            <div className="rounded-3xl glass p-6 border border-black/5 dark:border-white/5 gradient-border-card flex items-start gap-4 hover:border-primary/20 hover:shadow-lg transition-all duration-300 w-full">
+            <div className="rounded-3xl bg-card border border-border p-6 flex items-start gap-4 hover:border-primary/30 hover:shadow-lg transition-all duration-300 w-full">
               <div className="p-3.5 rounded-2xl bg-primary/10 border border-primary/25 text-primary">
                 <Mail className="w-5 h-5" />
               </div>
@@ -157,27 +147,10 @@ export default function ContactForm() {
               </div>
             </div>
           </Magnetic>
- 
-          {/* Ficha de Teléfono */}
-          <Magnetic range={50} strength={0.2}>
-            <div className="rounded-3xl glass p-6 border border-black/5 dark:border-white/5 gradient-border-card flex items-start gap-4 hover:border-primary/20 hover:shadow-lg transition-all duration-300 w-full">
-              <div className="p-3.5 rounded-2xl bg-primary/10 border border-primary/25 text-primary">
-                <Phone className="w-5 h-5" />
-              </div>
-              <div>
-                <span className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground block mb-0.5">
-                  {t.contact.phoneLabel}
-                </span>
-                <span className="text-sm font-semibold text-foreground font-sans">
-                  {personalInfo.phone}
-                </span>
-              </div>
-            </div>
-          </Magnetic>
- 
+
           {/* Ficha de Ubicación */}
           <Magnetic range={50} strength={0.2}>
-            <div className="rounded-3xl glass p-6 border border-black/5 dark:border-white/5 gradient-border-card flex items-start gap-4 hover:border-primary/20 hover:shadow-lg transition-all duration-300 w-full">
+            <div className="rounded-3xl bg-card border border-border p-6 flex items-start gap-4 hover:border-primary/30 hover:shadow-lg transition-all duration-300 w-full">
               <div className="p-3.5 rounded-2xl bg-primary/10 border border-primary/25 text-primary">
                 <MapPin className="w-5 h-5" />
               </div>
@@ -193,7 +166,7 @@ export default function ContactForm() {
           </Magnetic>
 
           {/* Mapa responsivo de Google integrado hermosamente */}
-          <div className="rounded-3xl glass border border-black/5 dark:border-white/5 gradient-border-card overflow-hidden shadow-inner w-full h-[220px]">
+          <div className="rounded-3xl bg-card border border-border overflow-hidden shadow-inner w-full h-[220px]">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d113927.30717595005!2d-65.29263446298478!3d-26.832688471699427!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94223792d6c56903%3A0xf88d5b92b5c56527!2sSan%20Miguel%20de%20Tucum%C3%A1n%2C%20Tucum%C3%A1n!5e0!3m2!1ses!2sar!4v1648795163351!5m2!1ses!2sar"
               width="100%"
@@ -208,7 +181,7 @@ export default function ContactForm() {
 
         {/* Columna Derecha: Formulario interactivo (Ocupa 3 columnas) */}
         <div className="lg:col-span-3 w-full">
-          <div className="rounded-3xl glass p-8 border border-black/5 dark:border-white/5 gradient-border-card relative overflow-hidden flex flex-col justify-between shadow-md h-full">
+          <div className="rounded-3xl bg-card border border-border p-8 relative overflow-hidden flex flex-col justify-between shadow-md h-full">
             <AnimatePresence mode="wait">
               {!isSuccess ? (
                 <motion.form
@@ -232,7 +205,7 @@ export default function ContactForm() {
                       value={formData.name}
                       onChange={handleInputChange}
                       placeholder={t.contact.namePlaceholder}
-                      className="w-full px-5 py-3 rounded-2xl bg-zinc-200/30 dark:bg-zinc-900/40 border border-black/5 dark:border-white/5 text-sm focus:outline-none focus:border-primary/50 text-foreground transition-all placeholder:text-muted-foreground/50"
+                      className="w-full px-5 py-3 rounded-2xl bg-background border border-border text-sm focus:outline-none focus:border-primary text-foreground transition-all placeholder:text-muted-foreground/60"
                     />
                   </div>
 
@@ -249,7 +222,7 @@ export default function ContactForm() {
                       value={formData.email}
                       onChange={handleInputChange}
                       placeholder={t.contact.emailPlaceholder}
-                      className="w-full px-5 py-3 rounded-2xl bg-zinc-200/30 dark:bg-zinc-900/40 border border-black/5 dark:border-white/5 text-sm focus:outline-none focus:border-primary/50 text-foreground transition-all placeholder:text-muted-foreground/50"
+                      className="w-full px-5 py-3 rounded-2xl bg-background border border-border text-sm focus:outline-none focus:border-primary text-foreground transition-all placeholder:text-muted-foreground/60"
                     />
                   </div>
 
@@ -266,7 +239,7 @@ export default function ContactForm() {
                       value={formData.message}
                       onChange={handleInputChange}
                       placeholder={t.contact.messagePlaceholder}
-                      className="w-full px-5 py-3 rounded-2xl bg-zinc-200/30 dark:bg-zinc-900/40 border border-black/5 dark:border-white/5 text-sm focus:outline-none focus:border-primary/50 text-foreground transition-all placeholder:text-muted-foreground/50 resize-none"
+                      className="w-full px-5 py-3 rounded-2xl bg-background border border-border text-sm focus:outline-none focus:border-primary text-foreground transition-all placeholder:text-muted-foreground/60 resize-none"
                     />
                   </div>
 
@@ -274,7 +247,7 @@ export default function ContactForm() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-primary text-white font-bold text-sm shadow-md hover:shadow-primary/25 hover:bg-primary/95 hover:scale-[1.01] active:scale-[0.99] disabled:opacity-50 transition-all duration-300 cursor-pointer mt-2"
+                    className="flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-primary text-white font-bold text-sm shadow-md hover:bg-[#B8121D] hover:scale-[1.01] active:scale-[0.99] disabled:opacity-50 transition-all duration-300 cursor-pointer mt-2"
                   >
                     {isSubmitting ? (
                       <>
@@ -317,34 +290,36 @@ export default function ContactForm() {
         </div>
       </div>
 
-      {/* Footer del Portfolio */}
-      <footer className="mt-24 pt-8 border-t border-black/5 dark:border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-muted-foreground">
-        <span>© {new Date().getFullYear()} {t.contact.footer}</span>
-        
-        {/* Redes sociales del footer */}
-        <div className="flex items-center gap-4">
-          <Magnetic range={40} strength={0.35}>
-            <a
-              href={personalInfo.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-primary transition-colors flex items-center gap-1 font-semibold cursor-pointer"
-            >
-              <Github className="w-3.5 h-3.5" />
-              <span>GitHub</span>
-            </a>
-          </Magnetic>
-          <Magnetic range={40} strength={0.35}>
-            <a
-              href={personalInfo.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-primary transition-colors flex items-center gap-1 font-semibold cursor-pointer"
-            >
-              <Linkedin className="w-3.5 h-3.5" />
-              <span>LinkedIn</span>
-            </a>
-          </Magnetic>
+      {/* Footer del Portfolio: bloque navy profundo a todo el ancho */}
+      <footer className="relative left-1/2 -translate-x-1/2 w-screen mt-24 bg-[#0E2440] px-6 py-8">
+        <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#F7F3EA]/70">
+          <span>© {new Date().getFullYear()} {t.contact.footer}</span>
+
+          {/* Redes sociales del footer */}
+          <div className="flex items-center gap-4">
+            <Magnetic range={40} strength={0.35}>
+              <a
+                href={personalInfo.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-[#F5C84C] transition-colors flex items-center gap-1 font-semibold cursor-pointer"
+              >
+                <Github className="w-3.5 h-3.5" />
+                <span>GitHub</span>
+              </a>
+            </Magnetic>
+            <Magnetic range={40} strength={0.35}>
+              <a
+                href={personalInfo.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-[#F5C84C] transition-colors flex items-center gap-1 font-semibold cursor-pointer"
+              >
+                <Linkedin className="w-3.5 h-3.5" />
+                <span>LinkedIn</span>
+              </a>
+            </Magnetic>
+          </div>
         </div>
       </footer>
     </section>

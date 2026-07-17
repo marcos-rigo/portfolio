@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import { useTheme } from "next-themes";
+import { usePrefersReducedMotion } from "@/hooks/use-reduced-motion";
 
 interface Point3D {
   x: number; // Unit sphere coordinate
@@ -27,7 +28,8 @@ export default function QuantumSphere() {
   const mouseRef = useRef({ x: 0, y: 0, active: false, tx: 0, ty: 0 });
   const scrollRef = useRef({ y: 0, currentY: 0 });
   const { resolvedTheme } = useTheme();
-  
+  const prefersReducedMotion = usePrefersReducedMotion();
+
   // Auto-degradación para móviles
   const [isMobile, setIsMobile] = useState(false);
 
@@ -52,6 +54,8 @@ export default function QuantumSphere() {
   }, []);
 
   useEffect(() => {
+    if (prefersReducedMotion) return;
+
     const canvas = canvasRef.current;
     const container = containerRef.current;
     if (!canvas || !container) return;
@@ -165,12 +169,12 @@ export default function QuantumSphere() {
     const render = () => {
       ctx.clearRect(0, 0, width, height);
 
-      // 1. Filtrar colores en función del tema activo (Cyber Crimson Rubí y Violeta Eléctrico WCAG AAA)
+      // 1. Filtrar colores en función del tema activo (Rojo de marca + Dorado de acento)
       const isDark = resolvedTheme === "dark";
-      const particleColor = isDark ? "rgba(255, 0, 63, " : "rgba(196, 0, 45, ";
-      const glowColor = isDark ? "rgba(255, 0, 63, 0.4)" : "rgba(196, 0, 45, 0.35)";
-      const meshColor = isDark ? "rgba(255, 0, 63, " : "rgba(196, 0, 45, ";
-      const highlightColor = isDark ? "rgba(139, 92, 246, " : "rgba(109, 40, 217, "; // Violeta de acento
+      const particleColor = isDark ? "rgba(216, 31, 42, " : "rgba(22, 53, 92, ";
+      const glowColor = isDark ? "rgba(216, 31, 42, 0.4)" : "rgba(22, 53, 92, 0.3)";
+      const meshColor = isDark ? "rgba(216, 31, 42, " : "rgba(22, 53, 92, ";
+      const highlightColor = isDark ? "rgba(245, 200, 76, " : "rgba(216, 31, 42, "; // Dorado en dark, rojo en claro
 
       // 2. Física líquida de inercia y amortiguación del scroll
       const scroll = scrollRef.current;
@@ -342,15 +346,23 @@ export default function QuantumSphere() {
       canvas.removeEventListener("mousemove", handleMouseMove);
       canvas.removeEventListener("mouseleave", handleMouseLeave);
     };
-  }, [resolvedTheme, isMobile]);
+  }, [resolvedTheme, isMobile, prefersReducedMotion]);
+
+  if (prefersReducedMotion) {
+    return (
+      <div className="w-full h-full min-h-[300px] flex items-center justify-center relative select-none">
+        <div className="w-48 h-48 rounded-full bg-primary/10 border border-primary/25" />
+      </div>
+    );
+  }
 
   return (
-    <div 
-      ref={containerRef} 
+    <div
+      ref={containerRef}
       className="w-full h-full min-h-[300px] flex items-center justify-center relative select-none"
     >
-      <canvas 
-        ref={canvasRef} 
+      <canvas
+        ref={canvasRef}
         className="block cursor-grab active:cursor-grabbing max-w-full max-h-full"
       />
     </div>
