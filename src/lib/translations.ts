@@ -115,7 +115,15 @@ export interface TranslationSchema {
     successTitle: string;
     successDesc: string;
     confettiLabel: string;
-    footer: string;
+  };
+  footer: {
+    tagline: string;
+    navTitle: string;
+    contactTitle: string;
+    techTitle: string;
+    techDescription: string;
+    madeWith: string;
+    rights: string;
   };
   console: {
     bootMessage1: string;
@@ -265,7 +273,15 @@ export const translations: Record<"es" | "en", TranslationSchema> = {
       successTitle: "¡Mensaje Enviado con éxito!",
       successDesc: "Muchas gracias por contactarme. He recibido tu mensaje e iniciaré la lectura para responderte a la brevedad.",
       confettiLabel: "Lanzando Confeti",
-      footer: "Marcos Rigo. Hecho con Next.js y Tailwind.",
+    },
+    footer: {
+      tagline: "Desarrollador Full Stack construyendo productos web rápidos y prolijos.",
+      navTitle: "Navegación",
+      contactTitle: "Contacto y Redes",
+      techTitle: "Stack del Sitio",
+      techDescription: "Construido con Next.js 16, React y Tailwind CSS v4. Desplegado en Vercel.",
+      madeWith: "Hecho con",
+      rights: "Todos los derechos reservados.",
     },
     console: {
       bootMessage1: "Marcos-OS v2026.5 [Tucumán, Argentina]",
@@ -450,7 +466,15 @@ export const translations: Record<"es" | "en", TranslationSchema> = {
       successTitle: "Message Sent Successfully!",
       successDesc: "Thank you for getting in touch. I have received your message and will read and reply to you as soon as possible.",
       confettiLabel: "Launching Confetti",
-      footer: "Marcos Rigo. Developed with Next.js & Tailwind.",
+    },
+    footer: {
+      tagline: "Full Stack Developer building fast, polished web products.",
+      navTitle: "Navigation",
+      contactTitle: "Contact & Social",
+      techTitle: "Site Stack",
+      techDescription: "Built with Next.js 16, React and Tailwind CSS v4. Deployed on Vercel.",
+      madeWith: "Made with",
+      rights: "All rights reserved.",
     },
     console: {
       bootMessage1: "Marcos-OS v2026.5 [Tucuman, Argentina]",

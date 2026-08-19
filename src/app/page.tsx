@@ -10,6 +10,7 @@ import ExperienceTimeline from "@/components/experience-timeline";
 import SkillsGrid from "@/components/skills-grid";
 import PortfolioDeck from "@/components/portfolio-deck";
 import ContactForm from "@/components/contact-form";
+import Footer from "@/components/footer";
 import CommandMenu from "@/components/command-menu";
 
 // Puramente decorativos: se cargan en el cliente sin bloquear el first paint ni el SSR del contenido.
@@ -54,6 +55,9 @@ export default function Home() {
           {/* Panel de Contacto y Formulario con Lluvia de Confeti */}
           <ContactForm />
         </div>
+
+        {/* 5. Footer full-bleed con navegación, contacto y detalle técnico */}
+        <Footer />
       </motion.div>
       </MotionConfig>
     </main>
