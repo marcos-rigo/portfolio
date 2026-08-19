@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Mail, FileDown, Heart } from "lucide-react";
+import { Mail, FileDown } from "lucide-react";
 import { personalInfo } from "@/lib/data";
 import Magnetic from "@/components/magnetic";
 import { useLanguage } from "@/components/language-provider";
@@ -60,7 +60,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative w-full bg-navy-deep border-t border-white/10 transition-colors duration-300">
+    <footer className="relative w-full bg-[#0E2440] border-t border-white/10 transition-colors duration-300">
       <div className="max-w-6xl mx-auto px-6 py-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
         {/* Columna 1: Identidad */}
         <div className="flex flex-col gap-4">
@@ -162,10 +162,6 @@ export default function Footer() {
           <p className="text-sm text-white/60 leading-relaxed font-sans">
             {t.footer.techDescription}
           </p>
-          <div className="inline-flex items-center gap-1.5 text-xs text-white/40 font-sans w-fit">
-            <span>{t.footer.madeWith}</span>
-            <Heart className="w-3.5 h-3.5 text-primary fill-primary" />
-          </div>
         </div>
       </div>
     </footer>

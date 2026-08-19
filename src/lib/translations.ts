@@ -122,7 +122,6 @@ export interface TranslationSchema {
     contactTitle: string;
     techTitle: string;
     techDescription: string;
-    madeWith: string;
     rights: string;
   };
   console: {
@@ -280,7 +279,6 @@ export const translations: Record<"es" | "en", TranslationSchema> = {
       contactTitle: "Contacto y Redes",
       techTitle: "Stack del Sitio",
       techDescription: "Construido con Next.js 16, React y Tailwind CSS v4. Desplegado en Vercel.",
-      madeWith: "Hecho con",
       rights: "Todos los derechos reservados.",
     },
     console: {
@@ -473,7 +471,6 @@ export const translations: Record<"es" | "en", TranslationSchema> = {
       contactTitle: "Contact & Social",
       techTitle: "Site Stack",
       techDescription: "Built with Next.js 16, React and Tailwind CSS v4. Deployed on Vercel.",
-      madeWith: "Made with",
       rights: "All rights reserved.",
     },
     console: {

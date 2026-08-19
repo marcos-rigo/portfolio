@@ -20,9 +20,6 @@
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
 
-  --color-navy-deep: var(--navy-deep);
-  --color-navy-mid: var(--navy-mid);
-
   --font-sans: var(--font-poppins), sans-serif;
   --font-heading: var(--font-poppins), sans-serif;
   --font-mono: var(--font-geist-mono), monospace;
