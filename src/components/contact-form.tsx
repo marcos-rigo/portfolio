@@ -292,7 +292,7 @@ export default function ContactForm() {
 
       {/* Footer del Portfolio: bloque navy profundo a todo el ancho */}
       <footer className="relative left-1/2 -translate-x-1/2 w-screen mt-24 bg-[#0E2440] px-6 py-8">
-        <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#F7F3EA]/70">
+        <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/70">
           <span>© {new Date().getFullYear()} {t.contact.footer}</span>
 
           {/* Redes sociales del footer */}

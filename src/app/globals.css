@@ -26,22 +26,22 @@
 }
 
 :root {
-  --background: #ffffff; /* Blanco puro, fondo por defecto del CV */
-  --foreground: #16355c; /* Azul marino estructural */
+  --background: #ffffff; /* Blanco puro, fondo por defecto del CV — siempre dominante */
+  --foreground: #0e2440; /* Navy oscuro, texto principal de alta legibilidad */
 
   --primary: #d81f2a; /* Rojo de acento CV */
   --primary-rgb: 216, 31, 42;
   --primary-hover: #b8121d;
   --primary-foreground: #ffffff;
 
-  --muted: #f7f3ea; /* Crema suave para superficies alternadas */
-  --muted-foreground: #4a6485; /* Slate azulado, ~5.5:1 sobre blanco/crema */
+  --muted: #f8fafc; /* Gris tenue frío para superficies/tarjetas secundarias */
+  --muted-foreground: #475569; /* Slate intermedio, AAA sobre blanco y sobre --muted */
 
-  --card: #f7f3ea;
-  --card-foreground: #16355c;
+  --card: #f8fafc;
+  --card-foreground: #0e2440;
 
-  --border: rgba(22, 53, 92, 0.12); /* Azul al 12% de opacidad */
-  --input: rgba(22, 53, 92, 0.14);
+  --border: #e2e8f0;
+  --input: #cbd5e1;
   --ring: #d81f2a;
 
   --accent: #f5c84c; /* Dorado terciario, solo íconos/detalles */
@@ -49,25 +49,26 @@
   --accent-foreground: #16355c;
 
   --navy-deep: #0e2440; /* Variante profunda para footer/bloques oscuros */
+  --navy-mid: #16355c; /* Navy intermedio del CV, usado en bloques estructurales fijos */
 }
 
 .dark {
-  --background: #0e2440; /* Azul marino profundo */
-  --foreground: #f7f3ea; /* Crema */
+  --background: #0e2440; /* Azul marino profundo del CV */
+  --foreground: #f8fafc; /* Blanco/crema frío de alto contraste */
 
   --primary: #d81f2a;
   --primary-rgb: 216, 31, 42;
   --primary-hover: #f0333e;
   --primary-foreground: #ffffff;
 
-  --muted: #16355c; /* Card navy */
-  --muted-foreground: #b9c6d8;
+  --muted: #16355c; /* Navy intermedio CV, panel/card */
+  --muted-foreground: #94a3b8;
 
   --card: #16355c;
-  --card-foreground: #f7f3ea;
+  --card-foreground: #f8fafc;
 
-  --border: rgba(247, 243, 234, 0.1);
-  --input: rgba(247, 243, 234, 0.12);
+  --border: rgba(148, 163, 184, 0.18);
+  --input: rgba(148, 163, 184, 0.24);
   --ring: #d81f2a;
 
   --accent: #f5c84c;
@@ -75,6 +76,7 @@
   --accent-foreground: #16355c;
 
   --navy-deep: #0e2440;
+  --navy-mid: #16355c;
 }
 
 /* Selección de texto con tinte rojo de marca */
@@ -195,7 +197,7 @@
 * {
   scroll-behavior: smooth;
   transition-property: background-color, border-color, color, fill, stroke, box-shadow;
-  transition-duration: 250ms;
+  transition-duration: 300ms;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
