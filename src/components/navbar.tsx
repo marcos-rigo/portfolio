@@ -93,7 +93,7 @@ export default function Navbar() {
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className={`fixed top-4 left-1/2 -translate-x-1/2 w-[92%] max-w-5xl z-50 rounded-full bg-[#16355C]/90 dark:bg-[#0E2440]/90 backdrop-blur-xl border border-white/10 transition-all duration-300 ${
+      className={`fixed top-4 left-1/2 -translate-x-1/2 w-[92%] max-w-[1440px] z-50 rounded-full bg-[var(--navy-mid)]/90 dark:bg-[var(--navy-deep)]/90 backdrop-blur-xl border border-white/10 transition-all duration-300 ${
         scrolled ? "shadow-lg py-2" : "py-3"
       }`}
     >
@@ -108,7 +108,7 @@ export default function Navbar() {
             <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center font-heading font-bold text-white shadow-md transition-transform duration-300 group-hover:scale-110">
               R
             </div>
-            <span className="font-heading font-semibold text-lg tracking-tight hidden sm:inline-block text-white transition-colors duration-300 group-hover:text-[#F5C84C]">
+            <span className="font-heading font-semibold text-lg tracking-tight hidden sm:inline-block text-white transition-colors duration-300 group-hover:text-[var(--accent)]">
               Rigo
               <span className="text-primary font-bold">.</span>
               Marcos
@@ -125,18 +125,18 @@ export default function Navbar() {
                 <a
                   href={item.href}
                   onClick={(e) => handleNavClick(e, item.href)}
-                  className={`relative px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide transition-colors duration-300 cursor-pointer ${
+                  className={`relative px-4 py-1.5 rounded-full text-sm font-semibold tracking-wide transition-colors duration-300 cursor-pointer ${
                     isActive ? "text-white" : "text-white/70 hover:text-white"
                   }`}
                 >
                   {isActive && (
                     <motion.span
                       layoutId="activeNavBackground"
-                      className="absolute inset-0 bg-primary rounded-full -z-10 shadow-sm"
+                      className="absolute inset-0 bg-primary rounded-full z-0 shadow-sm"
                       transition={{ type: "spring", stiffness: 380, damping: 30 }}
                     />
                   )}
-                  {item.name}
+                  <span className="relative z-10">{item.name}</span>
                 </a>
               </Magnetic>
             );
@@ -150,7 +150,7 @@ export default function Navbar() {
             <Magnetic range={30} strength={0.35}>
               <button
                 onClick={() => setLocale(locale === "es" ? "en" : "es")}
-                className="px-2.5 py-1.5 rounded-full border border-white/10 hover:bg-white/10 transition-all duration-300 cursor-pointer text-[10px] font-mono font-bold tracking-wider text-white/70 hover:text-white flex items-center justify-center min-w-[34px]"
+                className="px-2.5 py-1.5 rounded-full border border-white/10 hover:bg-white/10 transition-all duration-300 cursor-pointer text-[14px] font-mono font-bold tracking-wider text-white/70 hover:text-white flex items-center justify-center min-w-[34px]"
                 aria-label="Cambiar idioma"
               >
                 {locale === "es" ? "ES" : "EN"}
@@ -167,7 +167,7 @@ export default function Navbar() {
                 aria-label="Cambiar tema de color"
               >
                 {resolvedTheme === "dark" ? (
-                  <Sun className="w-4 h-4 text-[#F5C84C]" />
+                  <Sun className="w-4 h-4 text-[var(--accent)]" />
                 ) : (
                   <Moon className="w-4 h-4 text-white/80" />
                 )}
@@ -194,7 +194,7 @@ export default function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="md:hidden absolute top-[calc(100%+8px)] left-0 w-full rounded-2xl bg-[#16355C]/95 dark:bg-[#0E2440]/95 backdrop-blur-xl shadow-xl overflow-hidden border border-white/10"
+            className="md:hidden absolute top-[calc(100%+8px)] left-0 w-full rounded-2xl bg-[var(--navy-mid)]/95 dark:bg-[var(--navy-deep)]/95 backdrop-blur-xl shadow-xl overflow-hidden border border-white/10"
           >
             <div className="px-4 py-3 flex flex-col gap-2">
               {navItems.map((item) => {

@@ -26,7 +26,7 @@
 }
 
 :root {
-  --background: #ffffff; /* Blanco puro, fondo por defecto del CV — siempre dominante */
+  --background: #f7f5ef; /* Crema cálido con carácter (antes blanco plano) */
   --foreground: #0e2440; /* Navy oscuro, texto principal de alta legibilidad */
 
   --primary: #d81f2a; /* Rojo de acento CV */
@@ -34,10 +34,10 @@
   --primary-hover: #b8121d;
   --primary-foreground: #ffffff;
 
-  --muted: #f8fafc; /* Gris tenue frío para superficies/tarjetas secundarias */
-  --muted-foreground: #475569; /* Slate intermedio, AAA sobre blanco y sobre --muted */
+  --muted: #eef2f7; /* Superficie secundaria con leve tinte azulado */
+  --muted-foreground: #16355c; /* Navy oscuro (antes slate claro, bajo contraste sobre blanco) */
 
-  --card: #f8fafc;
+  --card: #f3f6fa;
   --card-foreground: #0e2440;
 
   --border: #e2e8f0;
@@ -201,8 +201,173 @@
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+html {
+  font-size: 17px; /* Base móvil: escala toda la tipografía (rem) del sitio */
+}
+
+@media (min-width: 1024px) {
+  html {
+    font-size: 18px; /* Base desktop */
+  }
+}
+
 body {
   overflow-x: hidden;
+}
+
+/* ==========================================
+   Contenedor ancho reutilizable (alineado en navbar/secciones/footer)
+   ========================================== */
+.container-wide {
+  width: 100%;
+  max-width: 1440px;
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+
+@media (min-width: 1024px) {
+  .container-wide {
+    padding-inline: 2rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container-wide {
+    padding-inline: 3rem;
+  }
+}
+
+@media (min-width: 1536px) {
+  .container-wide {
+    max-width: 1600px;
+  }
+}
+
+/* ==========================================
+   Escala tipográfica fluida para títulos
+   ========================================== */
+.heading-section {
+  font-size: clamp(2rem, 1.55rem + 2vw, 3.25rem);
+  line-height: 1.05;
+}
+
+.heading-card {
+  font-size: clamp(1.2rem, 1.02rem + 0.85vw, 1.65rem);
+  line-height: 1.15;
+}
+
+/* ==========================================
+   Reloj digital: nunca debe partirse en dos líneas
+   ========================================== */
+.clock-fluid {
+  font-size: clamp(1.05rem, 0.7rem + 1.5vw, 1.55rem);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* ==========================================
+   Cards con presencia: fondo con tinte, borde visible,
+   sombras en capas y hover con elevación (solo transform/box-shadow)
+   ========================================== */
+.card-surface {
+  position: relative;
+  background: linear-gradient(155deg, var(--card) 0%, var(--card) 62%, rgba(var(--primary-rgb), 0.05) 100%);
+  border: 1px solid rgba(22, 53, 92, 0.14);
+  box-shadow:
+    0 2px 8px rgba(22, 53, 92, 0.06),
+    0 20px 44px -22px rgba(22, 53, 92, 0.28);
+  transition: transform 260ms cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 260ms cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 260ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dark .card-surface {
+  background: linear-gradient(155deg, var(--card) 0%, var(--card) 62%, rgba(var(--primary-rgb), 0.09) 100%);
+  border-color: rgba(247, 243, 234, 0.12);
+  box-shadow:
+    0 2px 10px rgba(0, 0, 0, 0.35),
+    0 20px 44px -20px rgba(0, 0, 0, 0.55);
+}
+
+@media (hover: hover) {
+  .card-surface:hover {
+    transform: translateY(-4px);
+    border-color: rgba(var(--primary-rgb), 0.45);
+    box-shadow:
+      0 4px 14px rgba(22, 53, 92, 0.1),
+      0 28px 56px -20px rgba(var(--primary-rgb), 0.28);
+  }
+
+  .dark .card-surface:hover {
+    box-shadow:
+      0 4px 16px rgba(0, 0, 0, 0.4),
+      0 28px 56px -18px rgba(var(--primary-rgb), 0.35);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card-surface {
+    transition: none;
+  }
+
+  .card-surface:hover {
+    transform: none;
+  }
+}
+
+/* ==========================================
+   Fondos alternados entre secciones (sin layout shift:
+   son overlays absolutos, no ocupan espacio en el documento)
+   ========================================== */
+.section-surface {
+  position: relative;
+  isolation: isolate;
+}
+
+.section-surface::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.section-surface-a::before {
+  background:
+    radial-gradient(60% 50% at 12% 0%, rgba(var(--primary-rgb), 0.055), transparent 60%),
+    radial-gradient(55% 45% at 100% 100%, rgba(22, 53, 92, 0.05), transparent 60%);
+}
+
+.section-surface-b {
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(22, 53, 92, 0.035) 10%,
+    rgba(22, 53, 92, 0.035) 90%,
+    transparent 100%
+  );
+}
+
+.section-surface-b::before {
+  background:
+    radial-gradient(60% 55% at 88% 0%, rgba(var(--accent-rgb), 0.08), transparent 60%),
+    radial-gradient(55% 50% at 4% 100%, rgba(var(--primary-rgb), 0.06), transparent 60%);
+}
+
+.dark .section-surface-b {
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.025) 10%,
+    rgba(255, 255, 255, 0.025) 90%,
+    transparent 100%
+  );
+}
+
+.dark .section-surface-a::before {
+  background:
+    radial-gradient(60% 50% at 12% 0%, rgba(var(--primary-rgb), 0.08), transparent 60%),
+    radial-gradient(55% 45% at 100% 100%, rgba(var(--accent-rgb), 0.05), transparent 60%);
 }
 
 section[id] {
@@ -226,4 +391,44 @@ section[id] {
 .animate-marquee {
   stroke-dasharray: 6, 3;
   animation: marquee 0.8s linear infinite;
+}
+
+/* Anillo giratorio del retrato del Hero (borde degradado navy -> rojo) */
+.hero-photo-ring {
+  position: absolute;
+  inset: -10px;
+  border-radius: 9999px;
+  padding: 3px;
+  background: conic-gradient(from 0deg, var(--navy-mid), var(--primary), var(--accent), var(--navy-mid));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
+}
+
+@keyframes hero-ring-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-hero-ring-spin {
+  animation: hero-ring-spin 16s linear infinite;
+}
+
+@keyframes hero-breathe {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 0.85; transform: scale(1.08); }
+}
+
+.animate-hero-breathe {
+  animation: hero-breathe 4.5s ease-in-out infinite;
+}
+
+@keyframes hero-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.animate-hero-float {
+  animation: hero-float 3.2s ease-in-out infinite;
 }

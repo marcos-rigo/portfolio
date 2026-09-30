@@ -12,14 +12,14 @@ import SectionHeading from "@/components/section-heading";
 // Mapa de íconos vectoriales para habilidades sin archivo de imagen PNG local
 const iconFallbackMap: Record<string, React.ComponentType<{ className?: string }>> = {
   next: () => (
-    <div className="w-12 h-12 rounded-full bg-zinc-950 text-white flex items-center justify-center font-heading font-extrabold text-lg border border-white/10 shadow-inner">
+    <div className="w-14 h-14 rounded-full bg-zinc-950 text-white flex items-center justify-center font-heading font-extrabold text-xl border border-white/10 shadow-inner">
       N
     </div>
   ),
-  tailwind: () => <Wind className="w-8 h-8 text-cyan-400" />,
-  trello: () => <Kanban className="w-8 h-8 text-blue-500" />,
-  java: () => <Coffee className="w-8 h-8 text-red-500" />,
-  english: () => <Languages className="w-8 h-8 text-emerald-500" />,
+  tailwind: () => <Wind className="w-10 h-10 text-cyan-400" />,
+  trello: () => <Kanban className="w-10 h-10 text-blue-500" />,
+  java: () => <Coffee className="w-10 h-10 text-red-500" />,
+  english: () => <Languages className="w-10 h-10 text-emerald-500" />,
 };
 
 // Mapa de nombres de imagen locales para habilidades que sí tienen archivo PNG
@@ -62,7 +62,7 @@ export default function SkillsGrid() {
   };
 
   return (
-    <section id="skills" className="py-24 px-6 max-w-5xl mx-auto">
+    <section id="skills" className="py-24 container-wide section-surface section-surface-b">
       {/* Cabecera */}
       <SectionHeading tag={t.skills.tag} title={t.skills.title} description={t.skills.desc} />
 
@@ -75,7 +75,7 @@ export default function SkillsGrid() {
               <button
                 key={cat}
                 onClick={() => setActiveTab(cat)}
-                className={`relative px-4 py-2 rounded-xl text-xs font-semibold tracking-wider transition-colors duration-300 w-full sm:w-auto text-center cursor-pointer ${
+                className={`relative px-4 py-2 rounded-xl text-sm font-semibold tracking-wider transition-colors duration-300 w-full sm:w-auto text-center cursor-pointer ${
                   isActive
                     ? "text-white"
                     : "text-muted-foreground hover:text-foreground"
@@ -84,11 +84,11 @@ export default function SkillsGrid() {
                 {isActive && (
                   <motion.span
                     layoutId="activeTabBackground"
-                    className="absolute inset-0 bg-primary rounded-xl -z-10 shadow-sm"
+                    className="absolute inset-0 bg-primary rounded-xl z-0 shadow-sm"
                     transition={{ type: "spring", stiffness: 380, damping: 30 }}
                   />
                 )}
-                {categoryLabels[cat]}
+                <span className="relative z-10">{categoryLabels[cat]}</span>
               </button>
             );
           })}
@@ -114,36 +114,36 @@ export default function SkillsGrid() {
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.35, ease: "easeOut" }}
                 key={skill.name}
-                className={`rounded-2xl p-5 border flex flex-col items-center justify-center text-center relative overflow-hidden group select-none hover:-translate-y-1.5 transition-all duration-300 ${
+                className={`rounded-2xl p-6 border flex flex-col items-center justify-center text-center relative overflow-hidden group select-none hover:-translate-y-1.5 hover:shadow-xl transition-all duration-300 ${
                   isNavy
-                    ? "bg-[#16355C] dark:bg-[#0E2440] border-transparent"
-                    : "bg-card border-primary/40 hover:border-primary"
+                    ? "bg-[var(--navy-mid)] dark:bg-[var(--navy-deep)] border-transparent shadow-md"
+                    : "bg-card border-primary/40 hover:border-primary shadow-sm"
                 }`}
               >
                 {/* Renderizar Imagen PNG si existe o Fallback vectorial de Lucide */}
-                <div className="w-16 h-16 flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-110">
+                <div className="w-20 h-20 flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-110">
                   {logoSrc ? (
                     <Image
                       src={logoSrc}
                       alt={`Logotipo oficial de ${skill.name}`}
-                      width={48}
-                      height={48}
-                      className="w-12 h-12 object-contain"
+                      width={56}
+                      height={56}
+                      className="w-14 h-14 object-contain"
                     />
                   ) : FallbackIcon ? (
                     <FallbackIcon />
                   ) : (
-                    <Terminal className={`w-10 h-10 ${isNavy ? "text-[#F5C84C]" : "text-primary"}`} />
+                    <Terminal className={`w-12 h-12 ${isNavy ? "text-[var(--accent)]" : "text-primary"}`} />
                   )}
                 </div>
 
                 {/* Nombre de Habilidad */}
-                <span className={`text-xs font-semibold tracking-wide mt-1 block ${isNavy ? "text-white" : "text-foreground"}`}>
+                <span className={`text-base font-semibold tracking-wide mt-1 block ${isNavy ? "text-white" : "text-foreground"}`}>
                   {getSkillName(skill.name)}
                 </span>
 
                 {/* Categoría técnica en miniatura */}
-                <span className={`text-[9px] font-bold uppercase tracking-widest mt-1 block ${isNavy ? "text-white/60" : "text-muted-foreground/70"}`}>
+                <span className={`text-sm font-bold uppercase tracking-widest mt-1 block ${isNavy ? "text-white/60" : "text-muted-foreground"}`}>
                   {t.skills.categories[skill.category as keyof typeof t.skills.categories]}
                 </span>
               </motion.div>

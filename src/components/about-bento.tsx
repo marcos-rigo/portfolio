@@ -3,10 +3,26 @@
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { MapPin, Globe, Compass, GraduationCap, Languages, Clock, Sparkles, GitBranch } from "lucide-react";
+import { MapPin, Globe, Compass, GraduationCap, Clock, Sparkles, GitBranch } from "lucide-react";
 import { personalInfo } from "@/lib/data";
 import { use3DTilt } from "@/hooks/use-3d-tilt";
 import { useLanguage } from "@/components/language-provider";
+
+// Resalta en negrita las tecnologías mencionadas dentro de un texto de especialización
+const TECH_TERMS = ["Node.js/Express", "React/Next.js", "APIs REST", "REST APIs", "MongoDB", "SQL"];
+const TECH_TERMS_REGEX = new RegExp(`(${TECH_TERMS.join("|").replace(/\./g, "\\.")})`, "g");
+
+function highlightTech(text: string) {
+  return text.split(TECH_TERMS_REGEX).map((part, i) =>
+    TECH_TERMS.includes(part) ? (
+      <strong key={i} className="font-bold text-foreground">
+        {part}
+      </strong>
+    ) : (
+      part
+    )
+  );
+}
 
 // ==========================================
 // 1. WIDGET: HORA LOCAL Y ESTADO CONTEXTUAL
@@ -45,7 +61,7 @@ function LocalTimeWidget() {
         });
       } else if (localHour >= 18 && localHour < 23) {
         setStatus({
-          text: "📚 Cursando Ingeniería / Ideando proyectos",
+          text: "💻 Ideando proyectos freelance",
           color: "bg-indigo-500 shadow-indigo-500/30",
         });
       } else if (localHour >= 23 || localHour < 7) {
@@ -68,16 +84,16 @@ function LocalTimeWidget() {
 
   return (
     <div className="flex flex-col gap-2 p-4 rounded-2xl bg-zinc-500/5 border border-black/5 dark:border-white/5 shadow-inner">
-      <div className="flex items-center justify-between text-xs text-muted-foreground">
+      <div className="flex items-center justify-between text-sm text-muted-foreground">
         <span className="flex items-center gap-1.5 font-medium">
           <Clock className="w-3.5 h-3.5 text-primary" />
           Huso Horario
         </span>
-        <span className="font-semibold text-foreground/80">UTC -3 (ART)</span>
+        <span className="font-semibold text-foreground">UTC -3 (ART)</span>
       </div>
       
       {/* Reloj digital */}
-      <div className="text-2xl sm:text-3xl font-mono font-bold tracking-tight text-foreground select-none flex items-center justify-center py-2 bg-black/5 dark:bg-black/35 rounded-xl border border-black/[0.03] dark:border-white/[0.03] shadow-inner text-center">
+      <div className="clock-fluid font-mono font-bold tracking-tight text-foreground select-none flex items-center justify-center py-2 px-2 bg-black/5 dark:bg-black/35 rounded-xl border border-black/[0.03] dark:border-white/[0.03] shadow-inner text-center overflow-hidden">
         <span className="text-primary">
           {time || "00:00:00 AM"}
         </span>
@@ -86,7 +102,7 @@ function LocalTimeWidget() {
       {/* Indicador Contextual */}
       <div className="flex items-center gap-2 mt-1">
         <span className={`w-2.5 h-2.5 rounded-full shrink-0 animate-pulse ${status.color}`} />
-        <span className="text-[10px] sm:text-xs font-semibold text-muted-foreground/90 leading-tight">
+        <span className="text-sm sm:text-sm font-semibold text-muted-foreground leading-tight">
           {status.text}
         </span>
       </div>
@@ -405,25 +421,25 @@ function GithubWidget() {
         {/* Cabecera del perfil de GitHub */}
         <div className="flex items-center gap-4">
           {loading ? (
-            <div className="w-12 h-12 rounded-full bg-zinc-500/10 border border-black/5 dark:border-white/5 animate-pulse" />
+            <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-zinc-500/10 border border-black/5 dark:border-white/5 animate-pulse" />
           ) : (
             <Image
               src={profile?.avatar_url || "https://avatars.githubusercontent.com/u/104380695?v=4"}
               alt="Avatar oficial de Marcos Rigo en GitHub"
-              width={48}
-              height={48}
-              className="w-12 h-12 rounded-full border border-primary/30 shadow-inner select-none shrink-0"
+              width={64}
+              height={64}
+              className="w-14 h-14 sm:w-16 sm:h-16 rounded-full border border-primary/30 shadow-inner select-none shrink-0"
             />
           )}
           <div>
-            <h4 className="font-heading font-extrabold text-foreground text-base leading-tight">
+            <h4 className="font-heading font-extrabold text-foreground text-lg leading-tight">
               {loading ? "Marcos Rigo" : profile?.name}
             </h4>
-            <a 
-              href="https://github.com/marcos-rigo" 
-              target="_blank" 
+            <a
+              href="https://github.com/marcos-rigo"
+              target="_blank"
               rel="noopener noreferrer"
-              className="text-xs text-primary font-bold hover:underline font-mono"
+              className="text-sm text-primary font-bold hover:underline font-mono"
             >
               @{loading ? "marcos-rigo" : profile?.login}
             </a>
@@ -433,7 +449,7 @@ function GithubWidget() {
         {/* Mini Contadores dinámicos */}
         <div className="flex items-center gap-6 text-center lg:text-left">
           <div className="px-4 py-2 bg-zinc-500/5 rounded-2xl border border-black/5 dark:border-white/5 min-w-[90px]">
-            <span className="text-[9px] font-bold text-muted-foreground uppercase tracking-widest block mb-0.5">
+            <span className="text-sm font-bold text-muted-foreground uppercase tracking-widest block mb-0.5">
               {t.bento.githubFollowers}
             </span>
             <span className="text-sm font-mono font-bold text-foreground block">
@@ -441,7 +457,7 @@ function GithubWidget() {
             </span>
           </div>
           <div className="px-4 py-2 bg-zinc-500/5 rounded-2xl border border-black/5 dark:border-white/5 min-w-[90px]">
-            <span className="text-[9px] font-bold text-muted-foreground uppercase tracking-widest block mb-0.5">
+            <span className="text-sm font-bold text-muted-foreground uppercase tracking-widest block mb-0.5">
               {t.bento.githubRepos}
             </span>
             <span className="text-sm font-mono font-bold text-foreground block">
@@ -449,7 +465,7 @@ function GithubWidget() {
             </span>
           </div>
           <div className="px-4 py-2 bg-zinc-500/5 rounded-2xl border border-black/5 dark:border-white/5 min-w-[90px]">
-            <span className="text-[9px] font-bold text-muted-foreground uppercase tracking-widest block mb-0.5">
+            <span className="text-sm font-bold text-muted-foreground uppercase tracking-widest block mb-0.5">
               Commits (Yr)
             </span>
             <span className="text-sm font-mono font-bold text-primary block">
@@ -461,7 +477,7 @@ function GithubWidget() {
 
       {/* Grid de Contribuciones Interactivo */}
       <div className="flex flex-col gap-2 mt-2 w-full">
-        <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest flex items-center gap-1.5">
+        <span className="text-sm font-bold text-muted-foreground uppercase tracking-widest flex items-center gap-1.5">
           <GitBranch className="w-3.5 h-3.5 text-primary shrink-0" />
           {t.bento.githubActivity}
         </span>
@@ -470,7 +486,7 @@ function GithubWidget() {
         <div className="w-full overflow-x-auto custom-scrollbar pb-3 pt-2 relative">
           <div className="min-w-[620px] flex flex-col gap-1 px-1">
             {/* Cabecera de Meses */}
-            <div className="h-4 relative text-[9px] text-muted-foreground/60 font-mono select-none">
+            <div className="h-4 relative text-sm text-muted-foreground font-mono select-none">
               {monthLabels.map((lbl, idx) => (
                 <span 
                   key={idx} 
@@ -531,12 +547,12 @@ function GithubWidget() {
                   top: tooltipPos.y,
                   transform: "translateX(-50%)",
                 }}
-                className="z-30 pointer-events-none px-3 py-1.5 rounded-lg bg-zinc-950/90 text-white font-mono text-[9px] border border-white/10 shadow-lg text-center flex flex-col gap-0.5 min-w-[140px] backdrop-blur-[3px]"
+                className="z-30 pointer-events-none px-3 py-1.5 rounded-lg bg-zinc-950/90 text-white font-mono text-sm border border-white/10 shadow-lg text-center flex flex-col gap-0.5 min-w-[140px] backdrop-blur-[3px]"
               >
                 <span>
                   <strong>{hoveredSquare.commits}</strong> {t.bento.githubCommits}
                 </span>
-                <span className="text-white/60 text-[8px]">
+                <span className="text-white/60 text-sm">
                   {formatTooltipDate(hoveredSquare.date)}
                 </span>
               </motion.div>
@@ -545,7 +561,7 @@ function GithubWidget() {
         </div>
 
         {/* Leyenda del Grid */}
-        <div className="flex items-center justify-between text-[9px] text-muted-foreground/70 font-mono mt-1 pr-2">
+        <div className="flex items-center justify-between text-sm text-muted-foreground font-mono mt-1 pr-2">
           <span className="flex items-center gap-1.5">
             <span className={`w-2.5 h-2.5 rounded-full shrink-0 ${isCached ? "bg-primary animate-pulse" : "bg-emerald-500"}`} />
             {isCached ? t.bento.githubFallback : "API Live Connection"}
@@ -596,7 +612,7 @@ export default function AboutBento() {
   const tiltGithub = use3DTilt(5);
 
   return (
-    <section id="about-bento" className="py-20 px-6 max-w-5xl mx-auto overflow-hidden">
+    <section id="about-bento" className="py-20 container-wide section-surface section-surface-b overflow-hidden">
       <motion.div
         variants={containerVariants}
         initial="hidden"
@@ -611,30 +627,30 @@ export default function AboutBento() {
           onMouseMove={tiltBio.onMouseMove}
           onMouseLeave={tiltBio.onMouseLeave}
           style={tiltBio.style}
-          className="md:col-span-2 rounded-3xl bg-card border border-border relative overflow-hidden group flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow duration-300 p-8 cursor-grab active:cursor-grabbing"
+          className="md:col-span-2 rounded-3xl card-surface overflow-hidden group flex flex-col justify-between p-8 cursor-grab active:cursor-grabbing"
         >
           {/* Luz de fondo sutil */}
           <div className="absolute -top-24 -left-24 w-48 h-48 rounded-full bg-primary/10 blur-3xl group-hover:bg-primary/15 transition-colors duration-500 pointer-events-none" />
           
           <div className="relative z-10">
-            <span className="text-[10px] font-bold uppercase tracking-widest text-white px-3 py-1 rounded-full bg-primary inline-block mb-4">
+            <span className="text-sm font-bold uppercase tracking-widest text-white px-3 py-1 rounded-full bg-primary inline-block mb-4">
               {t.bento.presentation}
             </span>
-            <h3 className="font-heading font-extrabold text-2xl sm:text-3xl text-foreground mb-4 leading-tight">
+            <h3 className="heading-card font-heading font-extrabold text-foreground mb-4 leading-tight">
               {t.bento.bioTitle}
             </h3>
-            <p className="text-xs sm:text-sm text-muted-foreground/90 leading-relaxed font-sans mb-6">
+            <p className="text-base sm:text-lg text-muted-foreground leading-relaxed font-sans mb-6">
               {personalInfo.bio}
             </p>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center text-xs text-muted-foreground mt-4 pt-6 border-t border-black/5 dark:border-white/5 relative z-10">
-            <span className="flex items-center gap-1.5 font-semibold text-foreground/80">
+          <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center text-sm text-muted-foreground mt-4 pt-6 border-t border-black/5 dark:border-white/5 relative z-10">
+            <span className="flex items-center gap-1.5 font-semibold text-foreground">
               <GraduationCap className="w-4 h-4 text-primary shrink-0" />
               UTN Regional Tucumán
             </span>
             <span className="hidden sm:inline-block text-zinc-300 dark:text-zinc-800">|</span>
-            <span className="flex items-center gap-1.5 font-semibold text-foreground/80">
+            <span className="flex items-center gap-1.5 font-semibold text-foreground">
               <Globe className="w-4 h-4 text-primary shrink-0" />
               Desarrollador Full Stack MERN
             </span>
@@ -648,21 +664,18 @@ export default function AboutBento() {
           onMouseMove={tiltLocation.onMouseMove}
           onMouseLeave={tiltLocation.onMouseLeave}
           style={tiltLocation.style}
-          className="rounded-3xl bg-card border border-border relative overflow-hidden group flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow duration-300 p-8 cursor-grab active:cursor-grabbing"
+          className="rounded-3xl card-surface overflow-hidden group flex flex-col justify-between p-8 cursor-grab active:cursor-grabbing"
         >
           <div className="absolute inset-0 bg-zinc-500/5 group-hover:bg-zinc-500/10 transition-colors duration-500 -z-10 pointer-events-none" />
           
           <div className="relative z-10">
-            <span className="text-[10px] font-bold uppercase tracking-widest text-white px-3 py-1 rounded-full bg-primary inline-block mb-4">
+            <span className="text-sm font-bold uppercase tracking-widest text-white px-3 py-1 rounded-full bg-primary inline-block mb-4">
               {t.bento.location}
             </span>
-            <h3 className="font-heading font-extrabold text-lg text-foreground mb-2 leading-tight flex items-center gap-2">
+            <h3 className="heading-card font-heading font-extrabold text-foreground mb-5 leading-tight flex items-center gap-2">
               <MapPin className="w-5 h-5 text-primary animate-bounce shrink-0" />
               Tucumán, Argentina
             </h3>
-            <p className="text-[11px] text-muted-foreground/80 font-sans mb-5 leading-normal">
-              {t.bento.locationDesc}
-            </p>
           </div>
 
           {/* Reloj local dinámico contextual widget */}
@@ -678,23 +691,18 @@ export default function AboutBento() {
           onMouseMove={tiltLanguages.onMouseMove}
           onMouseLeave={tiltLanguages.onMouseLeave}
           style={tiltLanguages.style}
-          className="rounded-3xl bg-card border border-border relative overflow-hidden group flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow duration-300 p-8 cursor-grab active:cursor-grabbing"
+          className="rounded-3xl card-surface overflow-hidden group flex flex-col justify-between p-8 cursor-grab active:cursor-grabbing"
         >
           <div className="relative z-10">
-            <span className="text-[10px] font-bold uppercase tracking-widest text-white px-3 py-1 rounded-full bg-primary inline-block mb-4">
+            <span className="text-sm font-bold uppercase tracking-widest text-white px-3 py-1 rounded-full bg-primary inline-block mb-4">
               {t.bento.languages}
             </span>
-            <h3 className="font-heading font-extrabold text-lg text-foreground mb-5 leading-tight flex items-center gap-2">
-              <Languages className="w-5 h-5 text-primary shrink-0" />
-              {t.bento.languages}
-            </h3>
-            
-            <div className="flex flex-col gap-5">
+            <div className="flex flex-col gap-5 mt-2">
               {/* Español */}
               <div>
-                <div className="flex justify-between text-xs font-semibold mb-1.5">
+                <div className="flex justify-between text-sm font-semibold mb-1.5">
                   <span className="text-foreground">{t.bento.spanish}</span>
-                  <span className="text-primary font-bold text-[10px] uppercase tracking-wider">{t.bento.spanishLevel}</span>
+                  <span className="text-primary font-bold text-sm uppercase tracking-wider">{t.bento.spanishLevel}</span>
                 </div>
                 <div className="h-1.5 w-full bg-zinc-200 dark:bg-zinc-800/60 rounded-full overflow-hidden border border-black/[0.03] dark:border-white/[0.03]">
                   <motion.div 
@@ -709,9 +717,9 @@ export default function AboutBento() {
 
               {/* Inglés */}
               <div>
-                <div className="flex justify-between text-xs font-semibold mb-1.5">
+                <div className="flex justify-between text-sm font-semibold mb-1.5">
                   <span className="text-foreground">{t.bento.english}</span>
-                  <span className="text-primary font-bold text-[10px] uppercase tracking-wider">{t.bento.englishLevel}</span>
+                  <span className="text-primary font-bold text-sm uppercase tracking-wider">{t.bento.englishLevel}</span>
                 </div>
                 <div className="h-1.5 w-full bg-zinc-200 dark:bg-zinc-800/60 rounded-full overflow-hidden border border-black/[0.03] dark:border-white/[0.03]">
                   <motion.div 
@@ -722,7 +730,7 @@ export default function AboutBento() {
                     className="h-full bg-primary rounded-full"
                   />
                 </div>
-                <span className="text-[10px] text-muted-foreground/80 mt-2 block font-mono leading-normal">
+                <span className="text-sm text-muted-foreground mt-2 block font-mono leading-normal">
                   {t.bento.englishDesc}
                 </span>
               </div>
@@ -737,32 +745,32 @@ export default function AboutBento() {
           onMouseMove={tiltSpec.onMouseMove}
           onMouseLeave={tiltSpec.onMouseLeave}
           style={tiltSpec.style}
-          className="md:col-span-2 rounded-3xl bg-card border border-border relative overflow-hidden group flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow duration-300 p-8 cursor-grab active:cursor-grabbing"
+          className="md:col-span-2 rounded-3xl card-surface overflow-hidden group flex flex-col justify-between p-8 cursor-grab active:cursor-grabbing"
         >
           <div className="absolute -bottom-24 -right-24 w-48 h-48 rounded-full bg-primary/5 blur-3xl group-hover:bg-primary/10 transition-colors duration-500 pointer-events-none" />
 
           <div className="flex flex-col lg:flex-row items-center gap-8 relative z-10">
             {/* Texto de Especialización */}
             <div className="flex-1">
-              <span className="text-[10px] font-bold uppercase tracking-widest text-white px-3 py-1 rounded-full bg-primary inline-block mb-4">
+              <span className="text-sm font-bold uppercase tracking-widest text-white px-3 py-1 rounded-full bg-primary inline-block mb-4">
                 {t.bento.specialization}
               </span>
-              <h3 className="font-heading font-extrabold text-xl text-foreground mb-3 leading-tight flex items-center gap-2">
+              <h3 className="heading-card font-heading font-extrabold text-foreground mb-3 leading-tight flex items-center gap-2">
                 <Compass className="w-5 h-5 text-primary shrink-0" />
                 {t.bento.specTitle}
               </h3>
-              <p className="text-xs sm:text-sm text-muted-foreground/90 leading-relaxed font-sans mb-4">
-                {t.bento.specDesc1}
+              <p className="text-sm sm:text-base text-muted-foreground leading-relaxed font-sans mb-4">
+                {highlightTech(t.bento.specDesc1)}
               </p>
-              <p className="text-xs text-muted-foreground/80 leading-relaxed font-sans">
-                {t.bento.specDesc2}
+              <p className="text-sm text-muted-foreground leading-relaxed font-sans">
+                {highlightTech(t.bento.specDesc2)}
               </p>
             </div>
 
             {/* Widget del Radar SVG interactivo */}
             <div className="shrink-0 flex items-center justify-center w-full lg:w-fit bg-zinc-500/5 border border-black/5 dark:border-white/5 rounded-2xl p-2.5">
               <div className="text-center">
-                <span className="text-[9px] font-bold uppercase tracking-wider text-muted-foreground flex items-center gap-1 justify-center mb-1">
+                <span className="text-sm font-bold uppercase tracking-wider text-muted-foreground flex items-center gap-1 justify-center mb-1">
                   <Sparkles className="w-3 h-3 text-primary animate-pulse" />
                   {t.bento.skillsMap}
                 </span>
@@ -773,20 +781,20 @@ export default function AboutBento() {
 
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-6 pt-6 border-t border-black/5 dark:border-white/5 relative z-10">
             <div className="p-3 rounded-2xl bg-zinc-500/5 border border-black/5 dark:border-white/5 text-center transition-colors duration-300 hover:bg-primary/5">
-              <span className="text-xs font-bold text-foreground block">POO</span>
-              <span className="text-[10px] text-muted-foreground font-medium block">Java & Conceptos</span>
+              <span className="text-sm font-bold text-foreground block">POO</span>
+              <span className="text-sm text-muted-foreground font-medium block">Java & Conceptos</span>
             </div>
             <div className="p-3 rounded-2xl bg-zinc-500/5 border border-black/5 dark:border-white/5 text-center transition-colors duration-300 hover:bg-primary/5">
-              <span className="text-xs font-bold text-foreground block">MERN</span>
-              <span className="text-[10px] text-muted-foreground font-medium block">Stack Completo</span>
+              <span className="text-sm font-bold text-foreground block">MERN</span>
+              <span className="text-sm text-muted-foreground font-medium block">Stack Completo</span>
             </div>
             <div className="p-3 rounded-2xl bg-zinc-500/5 border border-black/5 dark:border-white/5 text-center transition-colors duration-300 hover:bg-primary/5">
-              <span className="text-xs font-bold text-foreground block">BBDD</span>
-              <span className="text-[10px] text-muted-foreground font-medium block">SQL & NoSQL</span>
+              <span className="text-sm font-bold text-foreground block">BBDD</span>
+              <span className="text-sm text-muted-foreground font-medium block">SQL & NoSQL</span>
             </div>
             <div className="p-3 rounded-2xl bg-zinc-500/5 border border-black/5 dark:border-white/5 text-center transition-colors duration-300 hover:bg-primary/5">
-              <span className="text-xs font-bold text-foreground block">Git/GitHub</span>
-              <span className="text-[10px] text-muted-foreground font-medium block">Versionado Seguro</span>
+              <span className="text-sm font-bold text-foreground block">Git/GitHub</span>
+              <span className="text-sm text-muted-foreground font-medium block">Versionado Seguro</span>
             </div>
           </div>
         </motion.div>
@@ -798,19 +806,19 @@ export default function AboutBento() {
           onMouseMove={tiltGithub.onMouseMove}
           onMouseLeave={tiltGithub.onMouseLeave}
           style={tiltGithub.style}
-          className="md:col-span-3 rounded-3xl bg-card border border-border relative overflow-hidden group flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow duration-300 p-8 cursor-grab active:cursor-grabbing"
+          className="md:col-span-3 rounded-3xl card-surface overflow-hidden group flex flex-col justify-between p-8 cursor-grab active:cursor-grabbing"
         >
           {/* Orbe de resplandor sutil */}
           <div className="absolute -top-32 -right-32 w-64 h-64 rounded-full bg-primary/5 blur-3xl group-hover:bg-primary/10 transition-colors duration-500 pointer-events-none" />
 
           <div className="relative z-10 w-full">
-            <span className="text-[10px] font-bold uppercase tracking-widest text-white px-3 py-1 rounded-full bg-primary inline-block mb-4">
+            <span className="text-sm font-bold uppercase tracking-widest text-white px-3 py-1 rounded-full bg-primary inline-block mb-4">
               {t.bento.githubTag}
             </span>
-            <h3 className="font-heading font-extrabold text-2xl text-foreground mb-4 leading-tight">
+            <h3 className="heading-card font-heading font-extrabold text-foreground mb-4 leading-tight">
               {t.bento.githubTitle}
             </h3>
-            <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed font-sans mb-6">
+            <p className="text-sm sm:text-base text-muted-foreground leading-relaxed font-sans mb-6">
               {t.bento.githubDesc}
             </p>
             

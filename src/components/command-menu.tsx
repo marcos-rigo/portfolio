@@ -353,9 +353,8 @@ export default function CommandMenu() {
           onClick={() => setIsOpen(true)}
           className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-card border border-border shadow-md hover:shadow-lg text-xs text-muted-foreground hover:text-foreground hover:scale-105 transition-all duration-300 cursor-pointer"
         >
-          <Sparkles className="w-3.5 h-3.5 text-primary animate-pulse" />
           <span>{locale === "es" ? "Presiona" : "Press"}</span>
-          <kbd className="px-1.5 py-0.5 rounded bg-zinc-200 dark:bg-zinc-800 text-[10px] font-mono border border-black/10 dark:border-white/10">
+          <kbd className="px-1.5 py-0.5 rounded bg-zinc-200 dark:bg-zinc-800 text-[10px] font-mono border border-black/10 dark:border-white/10 text-[#39FF14] [text-shadow:0_0_6px_rgba(57,255,20,0.8)]">
             Ctrl + K
           </kbd>
         </button>

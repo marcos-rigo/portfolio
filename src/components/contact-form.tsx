@@ -66,7 +66,7 @@ export default function ContactForm() {
   };
 
   return (
-    <section id="contact" className="py-24 px-6 max-w-5xl mx-auto relative overflow-hidden">
+    <section id="contact" className="py-24 container-wide section-surface section-surface-b relative overflow-hidden">
       {/* Lluvia de confeti de éxito */}
       <div className="fixed inset-0 pointer-events-none z-50 overflow-hidden">
         {confetti.map((p) => (
@@ -99,12 +99,12 @@ export default function ContactForm() {
         <div className="lg:col-span-2 flex flex-col gap-6 w-full">
           {/* Ficha de Correo */}
           <Magnetic range={50} strength={0.2}>
-            <div className="rounded-3xl bg-card border border-border p-6 flex items-start gap-4 hover:border-primary/30 hover:shadow-lg transition-all duration-300 w-full">
+            <div className="rounded-3xl card-surface p-6 flex items-start gap-4 w-full">
               <div className="p-3.5 rounded-2xl bg-primary/10 border border-primary/25 text-primary">
-                <Mail className="w-5 h-5" />
+                <Mail className="w-6 h-6" />
               </div>
               <div>
-                <span className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground block mb-0.5">
+                <span className="text-sm font-bold uppercase tracking-wider text-muted-foreground block mb-0.5">
                   {t.contact.emailLabel}
                 </span>
                 <a
@@ -119,12 +119,12 @@ export default function ContactForm() {
 
           {/* Ficha de Ubicación */}
           <Magnetic range={50} strength={0.2}>
-            <div className="rounded-3xl bg-card border border-border p-6 flex items-start gap-4 hover:border-primary/30 hover:shadow-lg transition-all duration-300 w-full">
+            <div className="rounded-3xl card-surface p-6 flex items-start gap-4 w-full">
               <div className="p-3.5 rounded-2xl bg-primary/10 border border-primary/25 text-primary">
-                <MapPin className="w-5 h-5" />
+                <MapPin className="w-6 h-6" />
               </div>
               <div>
-                <span className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground block mb-0.5">
+                <span className="text-sm font-bold uppercase tracking-wider text-muted-foreground block mb-0.5">
                   {t.contact.locationLabel}
                 </span>
                 <span className="text-sm font-semibold text-foreground font-sans leading-snug">
@@ -135,7 +135,7 @@ export default function ContactForm() {
           </Magnetic>
 
           {/* Mapa responsivo de Google integrado hermosamente */}
-          <div className="rounded-3xl bg-card border border-border overflow-hidden shadow-inner w-full h-[220px]">
+          <div className="rounded-3xl card-surface overflow-hidden w-full h-[240px]">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d113927.30717595005!2d-65.29263446298478!3d-26.832688471699427!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94223792d6c56903%3A0xf88d5b92b5c56527!2sSan%20Miguel%20de%20Tucum%C3%A1n%2C%20Tucum%C3%A1n!5e0!3m2!1ses!2sar!4v1648795163351!5m2!1ses!2sar"
               width="100%"
@@ -150,7 +150,7 @@ export default function ContactForm() {
 
         {/* Columna Derecha: Formulario interactivo (Ocupa 3 columnas) */}
         <div className="lg:col-span-3 w-full">
-          <div className="rounded-3xl bg-card border border-border p-8 relative overflow-hidden flex flex-col justify-between shadow-md h-full">
+          <div className="rounded-3xl card-surface p-8 overflow-hidden flex flex-col justify-between h-full">
             <AnimatePresence mode="wait">
               {!isSuccess ? (
                 <motion.form
@@ -163,7 +163,7 @@ export default function ContactForm() {
                 >
                   {/* Fila Nombre */}
                   <div className="flex flex-col gap-1.5">
-                    <label htmlFor="name" className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground/80 pl-1">
+                    <label htmlFor="name" className="text-sm font-bold uppercase tracking-wider text-muted-foreground pl-1">
                       {t.contact.nameLabel}
                     </label>
                     <input
@@ -174,13 +174,13 @@ export default function ContactForm() {
                       value={formData.name}
                       onChange={handleInputChange}
                       placeholder={t.contact.namePlaceholder}
-                      className="w-full px-5 py-3 rounded-2xl bg-background border border-border text-sm focus:outline-none focus:border-primary text-foreground transition-all placeholder:text-muted-foreground/60"
+                      className="w-full px-5 py-3 rounded-2xl bg-background border border-border text-sm focus:outline-none focus:border-primary text-foreground transition-all placeholder:text-muted-foreground"
                     />
                   </div>
 
                   {/* Fila Correo */}
                   <div className="flex flex-col gap-1.5">
-                    <label htmlFor="email" className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground/80 pl-1">
+                    <label htmlFor="email" className="text-sm font-bold uppercase tracking-wider text-muted-foreground pl-1">
                       {t.contact.emailFormLabel}
                     </label>
                     <input
@@ -191,13 +191,13 @@ export default function ContactForm() {
                       value={formData.email}
                       onChange={handleInputChange}
                       placeholder={t.contact.emailPlaceholder}
-                      className="w-full px-5 py-3 rounded-2xl bg-background border border-border text-sm focus:outline-none focus:border-primary text-foreground transition-all placeholder:text-muted-foreground/60"
+                      className="w-full px-5 py-3 rounded-2xl bg-background border border-border text-sm focus:outline-none focus:border-primary text-foreground transition-all placeholder:text-muted-foreground"
                     />
                   </div>
 
                   {/* Fila Mensaje */}
                   <div className="flex flex-col gap-1.5">
-                    <label htmlFor="message" className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground/80 pl-1">
+                    <label htmlFor="message" className="text-sm font-bold uppercase tracking-wider text-muted-foreground pl-1">
                       {t.contact.messageLabel}
                     </label>
                     <textarea
@@ -208,7 +208,7 @@ export default function ContactForm() {
                       value={formData.message}
                       onChange={handleInputChange}
                       placeholder={t.contact.messagePlaceholder}
-                      className="w-full px-5 py-3 rounded-2xl bg-background border border-border text-sm focus:outline-none focus:border-primary text-foreground transition-all placeholder:text-muted-foreground/60 resize-none"
+                      className="w-full px-5 py-3 rounded-2xl bg-background border border-border text-sm focus:outline-none focus:border-primary text-foreground transition-all placeholder:text-muted-foreground resize-none"
                     />
                   </div>
 
@@ -216,7 +216,7 @@ export default function ContactForm() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-primary text-white font-bold text-sm shadow-md hover:bg-[#B8121D] hover:scale-[1.01] active:scale-[0.99] disabled:opacity-50 transition-all duration-300 cursor-pointer mt-2"
+                    className="flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-primary text-white font-bold text-sm shadow-md hover:bg-[var(--primary-hover)] hover:scale-[1.01] active:scale-[0.99] disabled:opacity-50 transition-all duration-300 cursor-pointer mt-2"
                   >
                     {isSubmitting ? (
                       <>
@@ -242,13 +242,13 @@ export default function ContactForm() {
                   <div className="w-16 h-16 rounded-full bg-emerald-500/10 border border-emerald-500/25 flex items-center justify-center text-emerald-500 mb-2 shadow-inner">
                     <CheckCircle className="w-8 h-8 animate-pulse" />
                   </div>
-                  <h3 className="font-heading font-extrabold text-2xl text-foreground">
+                  <h3 className="heading-card font-heading font-extrabold text-foreground">
                     {t.contact.successTitle}
                   </h3>
                   <p className="text-sm text-muted-foreground max-w-sm leading-relaxed font-sans">
                     {t.contact.successDesc}
                   </p>
-                  <div className="inline-flex items-center gap-1 text-[10px] font-bold text-primary tracking-widest uppercase mt-4">
+                  <div className="inline-flex items-center gap-1 text-sm font-bold text-primary tracking-widest uppercase mt-4">
                     <Sparkles className="w-3.5 h-3.5" />
                     <span>{t.contact.confettiLabel}</span>
                   </div>

@@ -42,7 +42,7 @@ function LighthouseScores({ performance = 98, t, locale }: LighthouseScoresProps
 
   return (
     <div className="flex flex-col gap-3 my-6">
-      <span className="text-[10px] font-bold uppercase tracking-widest text-primary px-2.5 py-1 rounded-md bg-primary/10 border border-primary/20 inline-block w-fit">
+      <span className="text-sm font-bold uppercase tracking-widest text-primary px-2.5 py-1 rounded-md bg-primary/10 border border-primary/20 inline-block w-fit">
         {t.portfolio.modal.qualityTitle}
       </span>
       <div className="grid grid-cols-4 gap-2 sm:gap-4 p-4 bg-zinc-500/5 rounded-2xl border border-black/5 dark:border-white/5 text-center select-none">
@@ -64,11 +64,11 @@ function LighthouseScores({ performance = 98, t, locale }: LighthouseScoresProps
                     transition={{ duration: 1.5, ease: "easeOut", delay: i * 0.15 }}
                   />
                 </svg>
-                <span className="absolute inset-0 flex items-center justify-center font-mono text-[9px] sm:text-xs font-extrabold text-foreground">
+                <span className="absolute inset-0 flex items-center justify-center font-mono text-sm sm:text-sm font-extrabold text-foreground">
                   {cat.score}
                 </span>
               </div>
-              <span className="text-[9px] font-bold text-muted-foreground mt-2 leading-none">{cat.label}</span>
+              <span className="text-sm font-bold text-muted-foreground mt-2 leading-none">{cat.label}</span>
             </div>
           );
         })}
@@ -85,7 +85,7 @@ function TechnicalArchitecture({ projectId, t, locale }: { projectId: string; t:
     // Caso especial MERN Stack (Rolling Cucina)
     return (
       <div className="flex flex-col gap-4 my-6">
-        <span className="text-[10px] font-bold uppercase tracking-widest text-primary px-2.5 py-1 rounded-md bg-primary/10 border border-primary/20 inline-block w-fit">
+        <span className="text-sm font-bold uppercase tracking-widest text-primary px-2.5 py-1 rounded-md bg-primary/10 border border-primary/20 inline-block w-fit">
           {t.portfolio.modal.archTitle}
         </span>
         
@@ -118,21 +118,21 @@ function TechnicalArchitecture({ projectId, t, locale }: { projectId: string; t:
 
         {/* Modelo de base de datos NoSQL simulado */}
         <div className="flex flex-col gap-2.5">
-          <span className="text-[9px] font-bold text-muted-foreground uppercase tracking-widest">{t.portfolio.modal.dbTitle}</span>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-[10px] font-mono p-3 bg-black/5 dark:bg-black/35 rounded-xl border border-black/5 dark:border-white/5">
+          <span className="text-sm font-bold text-muted-foreground uppercase tracking-widest">{t.portfolio.modal.dbTitle}</span>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm font-mono p-3 bg-black/5 dark:bg-black/35 rounded-xl border border-black/5 dark:border-white/5">
             <div className="flex flex-col gap-1 p-2 rounded-lg bg-zinc-500/5 border border-black/5 dark:border-white/5">
               <strong className="text-foreground border-b border-black/10 dark:border-white/10 pb-1 flex items-center gap-1">👥 Users Collection</strong>
-              <span className="text-muted-foreground text-[9px]">- id: ObjectId</span>
-              <span className="text-muted-foreground text-[9px]">- name: String</span>
-              <span className="text-muted-foreground text-[9px]">- email: String (Unique)</span>
-              <span className="text-muted-foreground text-[9px]">- role: Enum ["admin", "client"]</span>
+              <span className="text-muted-foreground text-sm">- id: ObjectId</span>
+              <span className="text-muted-foreground text-sm">- name: String</span>
+              <span className="text-muted-foreground text-sm">- email: String (Unique)</span>
+              <span className="text-muted-foreground text-sm">- role: Enum ["admin", "client"]</span>
             </div>
             <div className="flex flex-col gap-1 p-2 rounded-lg bg-zinc-500/5 border border-black/5 dark:border-white/5">
               <strong className="text-foreground border-b border-black/10 dark:border-white/10 pb-1 flex items-center gap-1">🍕 Products Collection</strong>
-              <span className="text-muted-foreground text-[9px]">- id: ObjectId</span>
-              <span className="text-muted-foreground text-[9px]">- title: String</span>
-              <span className="text-muted-foreground text-[9px]">- price: Number</span>
-              <span className="text-muted-foreground text-[9px]">- active: Boolean</span>
+              <span className="text-muted-foreground text-sm">- id: ObjectId</span>
+              <span className="text-muted-foreground text-sm">- title: String</span>
+              <span className="text-muted-foreground text-sm">- price: Number</span>
+              <span className="text-muted-foreground text-sm">- active: Boolean</span>
             </div>
           </div>
         </div>
@@ -143,7 +143,7 @@ function TechnicalArchitecture({ projectId, t, locale }: { projectId: string; t:
   // Diagrama estándar para proyectos HTML5/SCSS estáticos (Farhat, Mesa Federal)
   return (
     <div className="flex flex-col gap-4 my-6">
-      <span className="text-[10px] font-bold uppercase tracking-widest text-primary px-2.5 py-1 rounded-md bg-primary/10 border border-primary/20 inline-block w-fit">
+      <span className="text-sm font-bold uppercase tracking-widest text-primary px-2.5 py-1 rounded-md bg-primary/10 border border-primary/20 inline-block w-fit">
         {locale === "es" ? "Arquitectura del Sitio (Jamstack Estático)" : "Site Architecture (Static Jamstack)"}
       </span>
       
@@ -176,14 +176,14 @@ function TechnicalArchitecture({ projectId, t, locale }: { projectId: string; t:
 
       {/* Caching y distribución en Edge */}
       <div className="flex flex-col gap-2.5">
-        <span className="text-[9px] font-bold text-muted-foreground uppercase tracking-widest">
+        <span className="text-sm font-bold text-muted-foreground uppercase tracking-widest">
           {locale === "es" ? "Optimización de Despliegue en Edge" : "Edge Deployment Optimization"}
         </span>
-        <div className="text-[10px] font-sans p-3.5 bg-black/5 dark:bg-black/35 rounded-xl border border-black/5 dark:border-white/5 leading-relaxed text-muted-foreground/90">
+        <div className="text-sm font-sans p-3.5 bg-black/5 dark:bg-black/35 rounded-xl border border-black/5 dark:border-white/5 leading-relaxed text-muted-foreground">
           <div className="flex items-center gap-1.5 text-foreground mb-1.5 font-bold">
             {t.portfolio.modal.edgeTitle}
           </div>
-          <p className="text-[10px] leading-relaxed">
+          <p className="text-sm leading-relaxed">
             {t.portfolio.modal.edgeDesc}
           </p>
         </div>
@@ -220,7 +220,7 @@ export default function PortfolioDeck() {
   };
 
   return (
-    <section id="portfolio" className="py-24 px-6 max-w-5xl mx-auto">
+    <section id="portfolio" className="py-24 container-wide section-surface section-surface-a">
       {/* Cabecera de Sección */}
       <SectionHeading tag={t.portfolio.tag} title={t.portfolio.title} description={t.portfolio.desc} />
 
@@ -233,7 +233,7 @@ export default function PortfolioDeck() {
               <button
                 key={cat}
                 onClick={() => setFilter(cat)}
-                className={`relative px-5 py-2 rounded-xl text-xs font-bold tracking-wide transition-colors duration-300 cursor-pointer ${
+                className={`relative px-5 py-2 rounded-xl text-sm font-bold tracking-wide transition-colors duration-300 cursor-pointer ${
                   isActive
                     ? "text-white"
                     : "text-muted-foreground hover:text-foreground"
@@ -242,11 +242,11 @@ export default function PortfolioDeck() {
                 {isActive && (
                   <motion.span
                     layoutId="activePortfolioBackground"
-                    className="absolute inset-0 bg-primary rounded-xl -z-10 shadow-sm"
+                    className="absolute inset-0 bg-primary rounded-xl z-0 shadow-sm"
                     transition={{ type: "spring", stiffness: 380, damping: 30 }}
                   />
                 )}
-                {filterLabels[cat]}
+                <span className="relative z-10">{filterLabels[cat]}</span>
               </button>
             );
           })}
@@ -271,10 +271,10 @@ export default function PortfolioDeck() {
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.4, ease: "easeOut" }}
                 key={proj.id}
-                className="rounded-3xl bg-card border border-border overflow-hidden flex flex-col group hover:-translate-y-2 hover:shadow-xl hover:border-primary/30 transition-all duration-300"
+                className="rounded-3xl card-surface overflow-hidden flex flex-col group"
               >
                 {/* Imagen del Proyecto */}
-                <div className="relative h-48 w-full overflow-hidden border-b border-border">
+                <div className="relative h-56 sm:h-64 w-full overflow-hidden border-b border-border">
                   <Image
                     src={proj.image}
                     alt={`Captura de pantalla de ${translatedTitle}`}
@@ -310,24 +310,24 @@ export default function PortfolioDeck() {
                     {/* Badges de stack */}
                     <div className="flex flex-wrap gap-1.5 mb-3">
                       {proj.stack.slice(0, 3).map((s) => (
-                        <span key={s} className="px-2 py-0.5 rounded-full bg-muted text-[9px] font-bold text-muted-foreground tracking-wide uppercase border border-border">
+                        <span key={s} className="px-2 py-0.5 rounded-full bg-muted text-sm font-bold text-muted-foreground tracking-wide uppercase border border-border">
                           {s}
                         </span>
                       ))}
                       {proj.stack.length > 3 && (
-                        <span className="px-2 py-0.5 rounded-full bg-muted text-[9px] font-bold text-muted-foreground tracking-wide">
+                        <span className="px-2 py-0.5 rounded-full bg-muted text-sm font-bold text-muted-foreground tracking-wide">
                           +{proj.stack.length - 3}
                         </span>
                       )}
                     </div>
 
                     {/* Título de Proyecto */}
-                    <h3 className="font-heading font-bold text-lg text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
+                    <h3 className="heading-card font-heading font-bold text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
                       {translatedTitle}
                     </h3>
 
                     {/* Breve descripción */}
-                    <p className="text-xs text-muted-foreground/80 line-clamp-3 leading-relaxed mb-4 font-sans">
+                    <p className="text-sm sm:text-base text-muted-foreground line-clamp-3 leading-relaxed mb-4 font-sans">
                       {translatedDesc}
                     </p>
                   </div>
@@ -335,7 +335,7 @@ export default function PortfolioDeck() {
                   {/* Enlace a Detalle modal */}
                   <button
                     onClick={() => setSelectedProject(proj)}
-                    className="flex items-center gap-1.5 text-xs font-bold text-primary mt-2 group-hover:translate-x-1.5 transition-transform duration-300 w-fit text-left cursor-pointer"
+                    className="flex items-center gap-1.5 text-sm font-bold text-primary mt-2 group-hover:translate-x-1.5 transition-transform duration-300 w-fit text-left cursor-pointer"
                   >
                     <span>{locale === "es" ? "Explorar detalles" : "Explore details"}</span>
                     <ExternalLink className="w-3.5 h-3.5" />
@@ -383,7 +383,7 @@ export default function PortfolioDeck() {
                 </button>
 
                 {/* Encabezado con imagen */}
-                <div className="relative h-64 w-full shrink-0 overflow-hidden border-b border-black/5 dark:border-white/5">
+                <div className="relative h-72 sm:h-80 w-full shrink-0 overflow-hidden border-b border-black/5 dark:border-white/5">
                   <Image
                     src={selectedProject.image}
                     alt={translatedModalTitle}
@@ -403,7 +403,7 @@ export default function PortfolioDeck() {
                 {/* Cuerpo de Especificaciones */}
                 <div className="p-6 sm:p-8 flex-1">
                   {/* Datos rápidos en grid */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6 pt-2 pb-6 border-b border-black/5 dark:border-white/5 text-xs text-muted-foreground">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6 pt-2 pb-6 border-b border-black/5 dark:border-white/5 text-sm text-muted-foreground">
                     <div className="flex items-center gap-2">
                       <User className="w-4 h-4 text-primary shrink-0" />
                       <span>
@@ -423,7 +423,7 @@ export default function PortfolioDeck() {
                     <h4 className="font-heading font-bold text-foreground text-sm uppercase tracking-wider mb-2">
                       {t.portfolio.modal.about}
                     </h4>
-                    <p className="text-sm text-muted-foreground/90 leading-relaxed">
+                    <p className="text-sm text-muted-foreground leading-relaxed">
                       {translatedModalDesc}
                     </p>
                   </div>
@@ -444,7 +444,7 @@ export default function PortfolioDeck() {
                       {selectedProject.stack.map((s) => (
                         <span
                           key={s}
-                          className="px-3 py-1 rounded-xl bg-zinc-200/50 dark:bg-zinc-800/40 text-xs font-semibold text-foreground border border-black/[0.05] dark:border-white/[0.05]"
+                          className="px-3 py-1 rounded-xl bg-zinc-200/50 dark:bg-zinc-800/40 text-sm font-semibold text-foreground border border-black/[0.05] dark:border-white/[0.05]"
                         >
                           {s}
                         </span>
@@ -455,20 +455,20 @@ export default function PortfolioDeck() {
                   {/* Credenciales de Prueba (si existen, ej. Rolling Cucina) */}
                   {selectedProject.credentials && (
                     <div className="mb-8 p-4 rounded-2xl bg-primary/10 border border-primary/20">
-                      <h4 className="font-heading font-bold text-primary text-xs uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                      <h4 className="font-heading font-bold text-primary text-sm uppercase tracking-wider mb-2 flex items-center gap-1.5">
                         <Sparkles className="w-4 h-4" />
                         {t.portfolio.modal.demo}
                       </h4>
-                      <p className="text-xs text-muted-foreground/80 leading-relaxed mb-3">
+                      <p className="text-sm text-muted-foreground leading-relaxed mb-3">
                         {t.portfolio.modal.demoDesc}
                       </p>
                       <div className="flex flex-col sm:flex-row gap-2 justify-between items-start sm:items-center p-3 rounded-xl bg-zinc-200/25 dark:bg-zinc-900/35 border border-black/5 dark:border-white/5">
-                        <code className="text-xs font-mono text-foreground break-all select-all">
+                        <code className="text-sm font-mono text-foreground break-all select-all">
                           {selectedProject.credentials}
                         </code>
                         <button
                           onClick={() => handleCopyCredentials(selectedProject.credentials || "")}
-                          className="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-primary hover:bg-primary/90 text-white font-bold text-[10px] uppercase tracking-wide shrink-0 transition-colors duration-300 w-full sm:w-auto mt-2 sm:mt-0 justify-center cursor-pointer"
+                          className="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-primary hover:bg-primary/90 text-white font-bold text-sm uppercase tracking-wide shrink-0 transition-colors duration-300 w-full sm:w-auto mt-2 sm:mt-0 justify-center cursor-pointer"
                         >
                           {copied ? (
                             <>

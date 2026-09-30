@@ -1,15 +1,13 @@
 "use client";
 
-import React from "react";
-import dynamic from "next/dynamic";
-import { motion } from "framer-motion";
-import { ArrowUpRight, FileDown, Sparkles } from "lucide-react";
+import React, { useEffect, useRef, useState } from "react";
+import { motion, useScroll, useSpring, useTransform } from "framer-motion";
+import { ArrowUpRight, FileDown } from "lucide-react";
 import { personalInfo } from "@/lib/data";
 import { useLanguage } from "@/components/language-provider";
 import Magnetic from "@/components/magnetic";
-
-// Decorativo: se carga en el cliente sin bloquear el first paint ni el SSR del contenido.
-const QuantumSphere = dynamic(() => import("@/components/quantum-sphere"), { ssr: false });
+import HeroPhoto from "@/components/hero-photo";
+import { usePrefersReducedMotion } from "@/hooks/use-reduced-motion";
 
 const Github = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
@@ -44,6 +42,32 @@ const Linkedin = (props: React.SVGProps<SVGSVGElement>) => (
 
 export default function Hero() {
   const { t } = useLanguage();
+  const prefersReducedMotion = usePrefersReducedMotion();
+  const sectionRef = useRef<HTMLElement>(null);
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    const mql = window.matchMedia("(min-width: 1024px)");
+    const update = () => setIsDesktop(mql.matches);
+    update();
+    mql.addEventListener("change", update);
+    return () => mql.removeEventListener("change", update);
+  }, []);
+
+  // Efecto "zoom" ligado al scroll: la foto arranca grande y se asienta
+  // en su tamaño normal al terminar de recorrer el Hero. Solo transform,
+  // así que no genera layout shift ni afecta el flujo del documento.
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+  const rawScale = useTransform(scrollYProgress, [0, 1], [1.28, 1]);
+  const rawY = useTransform(scrollYProgress, [0, 1], [24, 0]);
+  const springConfig = { stiffness: 120, damping: 26, mass: 0.6 };
+  const photoScale = useSpring(rawScale, springConfig);
+  const photoY = useSpring(rawY, springConfig);
+  const photoScrollStyle =
+    isDesktop && !prefersReducedMotion ? { scale: photoScale, y: photoY } : undefined;
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -82,6 +106,7 @@ export default function Hero() {
 
   return (
     <section
+      ref={sectionRef}
       id="about"
       className="relative min-h-screen flex items-center justify-center pt-28 pb-12 overflow-hidden px-6"
     >
@@ -91,14 +116,13 @@ export default function Hero() {
         animate="visible"
         className="max-w-6xl w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center justify-center text-center lg:text-left z-10"
       >
-        {/* Columna Izquierda: Información de Marcos (Ocupa 7 columnas en lg) */}
-        <div className="lg:col-span-7 flex flex-col items-center lg:items-start justify-center lg:justify-start">
+        {/* Columna de texto: Información de Marcos (Ocupa 7 columnas en lg) */}
+        <div className="order-2 lg:order-1 lg:col-span-7 flex flex-col items-center lg:items-start justify-center lg:justify-start">
           {/* Etiqueta flotante premium */}
           <motion.div
             variants={itemVariants}
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary text-white text-xs font-bold uppercase tracking-widest mb-6 shadow-sm"
           >
-            <Sparkles className="w-3.5 h-3.5 animate-pulse" />
             <span>{t.hero.tag}</span>
           </motion.div>
 
@@ -110,20 +134,21 @@ export default function Hero() {
             Rigo <span className="text-primary">Marcos</span>
           </motion.h1>
 
-          {/* Subtítulo dinámico con gradiente sutil */}
-          <motion.h2
-            variants={itemVariants}
-            className="text-xl sm:text-2xl lg:text-3xl font-medium text-muted-foreground max-w-2xl mb-8 tracking-wide font-sans leading-relaxed"
-          >
-            {t.bento.specTitle}
-          </motion.h2>
-
           {/* Biografía de introducción rápida */}
           <motion.p
             variants={itemVariants}
             className="text-sm sm:text-base text-muted-foreground/80 max-w-xl mb-10 leading-relaxed font-sans"
           >
-            {t.hero.bio}
+            {t.hero.bioBefore}
+            <a
+              href="https://frt.utn.edu.ar/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline decoration-dotted underline-offset-2 hover:text-primary transition-colors duration-300"
+            >
+              {t.hero.bioUniversityLink}
+            </a>
+            {t.hero.bioAfter}
           </motion.p>
 
           {/* Call To Actions */}
@@ -164,7 +189,7 @@ export default function Hero() {
                 href={personalInfo.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center p-3 rounded-full border border-border bg-card text-muted-foreground hover:text-primary hover:border-primary/40 transition-all duration-300 cursor-pointer"
+                className="inline-flex items-center justify-center p-3 rounded-full border border-border bg-card text-foreground shadow-[0_8px_22px_-6px_rgba(22,53,92,0.3)] dark:shadow-[0_8px_22px_-6px_rgba(0,0,0,0.55)] hover:text-primary hover:border-primary/40 hover:shadow-[0_10px_28px_-6px_rgba(216,31,42,0.4)] transition-all duration-300 cursor-pointer"
                 aria-label="Ir a GitHub de Marcos"
               >
                 <Github className="w-5 h-5" />
@@ -175,7 +200,7 @@ export default function Hero() {
                 href={personalInfo.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center p-3 rounded-full border border-border bg-card text-muted-foreground hover:text-primary hover:border-primary/40 transition-all duration-300 cursor-pointer"
+                className="inline-flex items-center justify-center p-3 rounded-full border border-border bg-card text-foreground shadow-[0_8px_22px_-6px_rgba(22,53,92,0.3)] dark:shadow-[0_8px_22px_-6px_rgba(0,0,0,0.55)] hover:text-primary hover:border-primary/40 hover:shadow-[0_10px_28px_-6px_rgba(216,31,42,0.4)] transition-all duration-300 cursor-pointer"
                 aria-label="Ir a LinkedIn de Marcos"
               >
                 <Linkedin className="w-5 h-5" />
@@ -184,14 +209,14 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* Columna Derecha: Esfera Cuántica 3D (Ocupa 5 columnas en lg) */}
+        {/* Columna de foto: retrato circular con marco animado (Ocupa 5 columnas en lg) */}
         <motion.div
           variants={itemVariants}
-          className="lg:col-span-5 w-full h-[320px] sm:h-[400px] lg:h-[450px] flex items-center justify-center relative select-none"
+          className="order-1 lg:order-2 lg:col-span-5 w-full h-[260px] sm:h-[340px] lg:h-[400px] flex items-center justify-center relative select-none"
         >
-          {/* Orbe de resplandor ambiental localizado detrás de la esfera */}
-          <div className="absolute inset-0 bg-primary/8 dark:bg-primary/20 rounded-full blur-[90px] pointer-events-none -z-10" />
-          <QuantumSphere />
+          <motion.div style={photoScrollStyle} className="flex items-center justify-center">
+            <HeroPhoto />
+          </motion.div>
         </motion.div>
       </motion.div>
     </section>

@@ -10,7 +10,9 @@ export interface TranslationSchema {
   };
   hero: {
     tag: string;
-    bio: string;
+    bioBefore: string;
+    bioUniversityLink: string;
+    bioAfter: string;
     ctaView: string;
     ctaDownload: string;
   };
@@ -18,7 +20,6 @@ export interface TranslationSchema {
     presentation: string;
     bioTitle: string;
     location: string;
-    locationDesc: string;
     timezone: string;
     languages: string;
     spanish: string;
@@ -44,12 +45,19 @@ export interface TranslationSchema {
   experience: {
     tag: string;
     title: string;
-    detailsLabel: string;
+    currentLabel: string;
     items: {
       [id: string]: {
-        role: string;
-        company: string;
-        description: string;
+        company?: string;
+        companySubtitle?: string;
+        period: string;
+        stages: {
+          [stageId: string]: {
+            role: string;
+            period: string;
+            bullets: string[];
+          };
+        };
       };
     };
   };
@@ -151,8 +159,10 @@ export const translations: Record<"es" | "en", TranslationSchema> = {
       contact: "Contacto",
     },
     hero: {
-      tag: "Ingeniería en Sistemas & Desarrollo Web",
-      bio: "Desarrollador Full Stack con base en Ingeniería en Sistemas. Me gusta cuidar el detalle: que el sitio cargue rápido, se vea bien en cualquier pantalla, y no tenga bugs escondidos.",
+      tag: "Ingeniería de Software",
+      bioBefore: "Desarrollador de Software con formación en Ingeniería en Sistemas en la ",
+      bioUniversityLink: "Universidad Tecnológica Nacional - Facultad Regional Tucumán",
+      bioAfter: " y experiencia en el sector público y en proyectos freelance.",
       ctaView: "Ver mi trabajo",
       ctaDownload: "Descargar CV",
     },
@@ -160,14 +170,13 @@ export const translations: Record<"es" | "en", TranslationSchema> = {
       presentation: "Presentación",
       bioTitle: "Sobre mí",
       location: "Ubicación",
-      locationDesc: "San Miguel de Tucumán. Disponible para trabajar de forma remota y relocalización presencial.",
       timezone: "Huso Horario",
       languages: "Idiomas",
       spanish: "Español",
       spanishLevel: "Nativo",
       english: "Inglés",
-      englishLevel: "B2 (Avanzado)",
-      englishDesc: "Estudios avanzados cursados en el Instituto Cultural Anglo.",
+      englishLevel: "Intermedio",
+      englishDesc: "Estudios cursados en el Instituto Cultural Anglo.",
       specialization: "Especialización",
       specTitle: "Ingeniería de Software Aplicada",
       specDesc1: "De la carrera me quedó la costumbre de pensar cómo estructurar las cosas antes de escribir código: cómo modelo los datos, cómo separo responsabilidades, qué tan escalable necesita ser algo. En el día a día eso se traduce en APIs REST con Node.js/Express, bases de datos en MongoDB o SQL según el proyecto, y frontend en React/Next.js.",
@@ -186,17 +195,46 @@ export const translations: Record<"es" | "en", TranslationSchema> = {
     experience: {
       tag: "Trayectoria",
       title: "Experiencia Laboral",
-      detailsLabel: "Proyectos gubernamentales",
+      currentLabel: "Actual",
       items: {
-        "exp-1": {
-          role: "Desarrollador Full Stack",
+        "exp-ministerio": {
           company: "Ministerio de Seguridad de Tucumán",
-          description: "+50.000 usuarios mensuales atendidos y Lighthouse 90+ en producción. Desarrollo integral de sitios institucionales y plataformas gubernamentales del Ministerio: diseño de base de datos, APIs y frontend responsivo, con foco en testing funcional antes de cada despliegue para garantizar estabilidad y seguridad.",
+          companySubtitle: "Secretaría de Participación Ciudadana · Área de Sistemas e IT",
+          period: "2016 – Presente",
+          stages: {
+            "stage-fullstack": {
+              role: "Desarrollador Full Stack",
+              period: "2018 – Presente",
+              bullets: [
+                "Desarrollo de aplicaciones web con bases de datos.",
+                "Migración y modernización de sitios institucionales.",
+                "Testing funcional y validación de sistemas antes de producción.",
+                "Tareas de sistemas e IT del área según la necesidad.",
+                "Dictado de charlas, capacitaciones y talleres en la Secretaría.",
+              ],
+            },
+            "stage-web": {
+              role: "Desarrollador Web",
+              period: "2016 – 2018 (inicio como pasante)",
+              bullets: [
+                "Desarrollo y mantenimiento de sitios institucionales en WordPress.",
+                "Testing funcional y validación de sistemas antes de producción.",
+              ],
+            },
+          },
         },
-        "exp-2": {
-          role: "Desarrollador Web",
-          company: "Gobierno de Tucumán",
-          description: "Creación y mantenimiento continuo de sitios institucionales responsivos de cara al ciudadano. Coordinación técnica de requerimientos y despliegue rápido de interfaces web accesibles y óptimas, aplicando testing funcional exhaustivo de pre-producción.",
+        "exp-freelance": {
+          period: "2020 – Presente",
+          stages: {
+            "stage-freelance": {
+              role: "Desarrollador Freelance",
+              period: "2020 – Presente",
+              bullets: [
+                "Desarrollo de sitios web y aplicaciones para clientes particulares, a cargo de todo el ciclo: relevamiento de requerimientos, desarrollo y despliegue.",
+                "Trato directo con los clientes.",
+              ],
+            },
+          },
         },
       },
     },
@@ -343,8 +381,10 @@ export const translations: Record<"es" | "en", TranslationSchema> = {
       contact: "Contact",
     },
     hero: {
-      tag: "Systems Engineering & Web Development",
-      bio: "I combine technical systems precision with a passion for modern interface design, creating fast, 100% responsive, and pixel-polished digital products.",
+      tag: "Software Engineering",
+      bioBefore: "Software Developer with a background in Systems Engineering at the ",
+      bioUniversityLink: "Universidad Tecnológica Nacional - Facultad Regional Tucumán",
+      bioAfter: " and experience in the public sector and freelance projects.",
       ctaView: "View my work",
       ctaDownload: "Download CV",
     },
@@ -352,14 +392,13 @@ export const translations: Record<"es" | "en", TranslationSchema> = {
       presentation: "Presentation",
       bioTitle: "Software design with a holistic focus and high scalability",
       location: "Location",
-      locationDesc: "San Miguel de Tucumán. Available for remote work and on-site relocation.",
       timezone: "Time Zone",
       languages: "Languages",
       spanish: "Spanish",
       spanishLevel: "Native",
       english: "English",
-      englishLevel: "B2 (Advanced)",
-      englishDesc: "Advanced English studies completed at the Anglo Cultural Institute.",
+      englishLevel: "Intermediate",
+      englishDesc: "English studies completed at the Anglo Cultural Institute.",
       specialization: "Specialization",
       specTitle: "Applied Software Engineering",
       specDesc1: "My academic background in Information Systems enables me to architect scalable systems, model complex data, and optimize algorithms.",
@@ -378,17 +417,46 @@ export const translations: Record<"es" | "en", TranslationSchema> = {
     experience: {
       tag: "Career",
       title: "Work Experience",
-      detailsLabel: "Government Projects",
+      currentLabel: "Current",
       items: {
-        "exp-1": {
-          role: "Full Stack Developer",
+        "exp-ministerio": {
           company: "Ministry of Security of Tucumán",
-          description: "50,000+ monthly users served and 90+ Lighthouse scores in production. End-to-end development of institutional websites and government platforms for the Ministry: database design, REST APIs, and responsive frontend, with strict pre-production testing to guarantee stability and security.",
+          companySubtitle: "Citizen Participation Secretariat · Systems & IT Area",
+          period: "2016 – Present",
+          stages: {
+            "stage-fullstack": {
+              role: "Full Stack Developer",
+              period: "2018 – Present",
+              bullets: [
+                "Development of web applications with databases.",
+                "Migration and modernization of institutional websites.",
+                "Functional testing and system validation before production.",
+                "Systems and IT tasks for the area as needed.",
+                "Delivering talks, training sessions, and workshops at the Secretariat.",
+              ],
+            },
+            "stage-web": {
+              role: "Web Developer",
+              period: "2016 – 2018 (started as an intern)",
+              bullets: [
+                "Development and maintenance of institutional WordPress websites.",
+                "Functional testing and system validation before production.",
+              ],
+            },
+          },
         },
-        "exp-2": {
-          role: "Web Developer",
-          company: "Government of Tucumán",
-          description: "Continuous creation and maintenance of responsive citizen-facing websites. Technical requirements coordination and rapid deployment of accessible, optimal web layouts utilizing intensive pre-production functionality testing.",
+        "exp-freelance": {
+          period: "2020 – Present",
+          stages: {
+            "stage-freelance": {
+              role: "Freelance Developer",
+              period: "2020 – Present",
+              bullets: [
+                "Development of websites and applications for individual clients, owning the full cycle: requirements gathering, development, and deployment.",
+                "Direct client communication.",
+              ],
+            },
+          },
         },
       },
     },

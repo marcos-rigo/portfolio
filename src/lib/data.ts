@@ -15,12 +15,17 @@ export interface PersonalInfo {
   logoImage: string;
 }
 
+export interface ExperienceStage {
+  id: string;
+  current: boolean;
+  technologies: string[];
+}
+
 export interface ExperienceItem {
   id: string;
-  company: string;
-  role: string;
-  period: string;
-  description: string;
+  current: boolean;
+  /** Etapas del puesto, de la más reciente a la más antigua. */
+  stages: ExperienceStage[];
 }
 
 export interface SkillItem {
@@ -49,7 +54,7 @@ export const personalInfo: PersonalInfo = {
   fullName: "Rigo Marcos",
   title: "Desarrollador Web Full Stack",
   subtitle: "Estudiante Avanzado de Ingeniería en Sistemas de Información",
-  bio: "Soy desarrollador web Full Stack, con formación en Ingeniería en Sistemas de Información en la UTN – Facultad Regional Tucumán. Me especializo en desarrollo web y trato de estar siempre actualizado con las tecnologías que uso. Me gusta trabajar en equipo, resolver problemas y seguir aprendiendo, tanto a nivel profesional como personal.",
+  bio: "Soy desarrollador Full Stack, con formación en Ingeniería en Sistemas de Información en la Universidad Tecnológica Nacional – Facultad Regional Tucumán. Me especializo en desarrollo de software y trato de estar siempre actualizado con las tecnologías que uso. Me gusta trabajar en equipo, resolver problemas y seguir aprendiendo, tanto a nivel profesional como personal.",
   email: "marcos.rigo.10@gmail.com",
   phone: "+54 381 4163 584",
   location: "San Miguel de Tucumán, Tucumán, Argentina",
@@ -62,18 +67,31 @@ export const personalInfo: PersonalInfo = {
 
 export const experiences: ExperienceItem[] = [
   {
-    id: "exp-1",
-    company: "Ministerio de Seguridad de Tucumán",
-    role: "Desarrollador Full Stack",
-    period: "2020 - Presente",
-    description: "+50.000 usuarios mensuales atendidos y Lighthouse 90+ en producción. Desarrollo integral de sitios institucionales y plataformas gubernamentales del Ministerio: diseño de base de datos, APIs y frontend responsivo, con foco en testing funcional antes de cada despliegue para garantizar estabilidad y seguridad.",
+    id: "exp-ministerio",
+    current: true,
+    stages: [
+      {
+        id: "stage-fullstack",
+        current: true,
+        technologies: ["React", "Next.js", "JavaScript", "Node.js", "Express", "MongoDB", "MySQL", "Firebase", "Supabase", "Power BI", "Git", "GitHub"],
+      },
+      {
+        id: "stage-web",
+        current: false,
+        technologies: ["WordPress", "HTML", "CSS"],
+      },
+    ],
   },
   {
-    id: "exp-2",
-    company: "Gobierno de Tucumán",
-    role: "Desarrollador Web",
-    period: "2018 - Presente",
-    description: "Creación y mantenimiento continuo de sitios institucionales responsivos de cara al ciudadano. Coordinación técnica de requerimientos y despliegue rápido de interfaces web accesibles y óptimas, aplicando testing funcional exhaustivo de pre-producción.",
+    id: "exp-freelance",
+    current: true,
+    stages: [
+      {
+        id: "stage-freelance",
+        current: true,
+        technologies: ["React", "Next.js", "JavaScript", "Node.js", "Express", "MongoDB", "MySQL", "Firebase", "Supabase", "Git", "GitHub"],
+      },
+    ],
   },
 ];
 

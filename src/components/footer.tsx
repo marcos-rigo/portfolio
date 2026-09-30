@@ -60,8 +60,8 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative w-full bg-[#0E2440] border-t border-white/10 transition-colors duration-300">
-      <div className="max-w-6xl mx-auto px-6 py-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
+    <footer className="relative w-full bg-[var(--navy-deep)] border-t border-white/10 transition-colors duration-300">
+      <div className="container-wide py-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
         {/* Columna 1: Identidad */}
         <div className="flex flex-col gap-4">
           <a
@@ -79,14 +79,14 @@ export default function Footer() {
           <p className="text-sm text-white/60 leading-relaxed font-sans max-w-xs">
             {t.footer.tagline}
           </p>
-          <p className="text-xs text-white/40 font-sans mt-2">
+          <p className="text-sm text-white/50 font-sans mt-2">
             © {new Date().getFullYear()} {personalInfo.fullName}. {t.footer.rights}
           </p>
         </div>
 
         {/* Columna 2: Navegación rápida */}
         <div className="flex flex-col gap-4">
-          <h3 className="text-[11px] font-bold uppercase tracking-widest text-white/50">
+          <h3 className="text-sm font-bold uppercase tracking-widest text-white/60">
             {t.footer.navTitle}
           </h3>
           <nav className="flex flex-col gap-3">
@@ -105,7 +105,7 @@ export default function Footer() {
 
         {/* Columna 3: Contacto y redes */}
         <div className="flex flex-col gap-4">
-          <h3 className="text-[11px] font-bold uppercase tracking-widest text-white/50">
+          <h3 className="text-sm font-bold uppercase tracking-widest text-white/60">
             {t.footer.contactTitle}
           </h3>
           <div className="flex flex-col gap-3">
@@ -156,7 +156,7 @@ export default function Footer() {
 
         {/* Columna 4: Detalle técnico */}
         <div className="flex flex-col gap-4">
-          <h3 className="text-[11px] font-bold uppercase tracking-widest text-white/50">
+          <h3 className="text-sm font-bold uppercase tracking-widest text-white/60">
             {t.footer.techTitle}
           </h3>
           <p className="text-sm text-white/60 leading-relaxed font-sans">
